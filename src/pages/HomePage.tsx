@@ -88,34 +88,31 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
   // Preserved Real-World Brand Applications (الهوية في الواقع)
   const applicationGalleries = [
     {
-      id: 'app-exhibition',
-      titleAr: 'الهوية في الفضاءات والمعارض العامة',
-      titleEn: 'Identity in Exhibitions & Public Spaces',
-      categoryAr: 'معارض وفضاءات',
-      categoryEn: 'Pavilions',
+      id: 'app-passport',
+      titleAr: 'جواز السفر والوثائق الدبلوماسية',
+      titleEn: 'Passports & Official State Documents',
+      categoryAr: 'وثائق رسمية',
+      categoryEn: 'State Documents',
       src: getAssetUrl('/assets/media/7c47c148e9b75602dafbd6f8d6f6492f.jpg'),
       span: 'md:col-span-2 md:row-span-2',
-      aspect: 'aspect-[16/10]',
     },
     {
       id: 'app-stationery',
-      titleAr: 'المطبوعات والمستندات الدبلوماسية',
-      titleEn: 'Diplomatic Publications & Protocol Stationery',
-      categoryAr: 'وثائق رسمية',
+      titleAr: 'المراسم والبدلات الدبلوماسية الرسمية',
+      titleEn: 'Diplomatic Protocol & Official Attire',
+      categoryAr: 'مراسم وبروتوكول',
       categoryEn: 'Protocol',
       src: getAssetUrl('/assets/media/c7dc6e6ccdbf9705843d4d5bad4e50ec.jpg'),
       span: 'md:col-span-1',
-      aspect: 'aspect-square',
     },
     {
-      id: 'app-textiles',
-      titleAr: 'الأوشحة والحرير الدمشقي التقليدي',
-      titleEn: 'Traditional Damascene Silk Textiles',
-      categoryAr: 'أنسجة سورية',
-      categoryEn: 'Textiles',
+      id: 'app-architecture',
+      titleAr: 'الصروح والواجهات الحكومية الرسمية',
+      titleEn: 'State Facades & Institutional Buildings',
+      categoryAr: 'صروح حكومية',
+      categoryEn: 'Architecture',
       src: getAssetUrl('/assets/media/7458da0dd305ec790e7761f5e66aeb9f.jpg'),
       span: 'md:col-span-1',
-      aspect: 'aspect-square',
     },
     {
       id: 'app-urban',
@@ -125,7 +122,6 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
       categoryEn: 'Urban',
       src: getAssetUrl('/assets/media/6515842db4fd9195e73be4bf81db90cc.jpg'),
       span: 'md:col-span-1',
-      aspect: 'aspect-square',
     },
     {
       id: 'app-packaging',
@@ -135,7 +131,6 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
       categoryEn: 'Packaging',
       src: getAssetUrl('/assets/media/93b6badaf8588070fa15d7466fbad083.jpg'),
       span: 'md:col-span-1',
-      aspect: 'aspect-square',
     },
     {
       id: 'app-digital',
@@ -144,8 +139,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
       categoryAr: 'تطبيقات رقمية',
       categoryEn: 'Digital UI',
       src: getAssetUrl('/assets/media/b415d4a46ec0157055feea4837b4c66e.jpg'),
-      span: 'md:col-span-2',
-      aspect: 'aspect-[21/9]',
+      span: 'md:col-span-1',
     },
   ];
 
@@ -429,7 +423,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[280px] gap-6">
           {applicationGalleries.map((item) => (
             <div
               key={item.id}
@@ -442,37 +436,35 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
                   downloadUrl: item.src,
                 })
               }
-              className={`${item.span} group relative rounded-3xl overflow-hidden bg-gray-100 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer`}
+              className={`${item.span} group relative rounded-3xl overflow-hidden bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer min-h-[280px]`}
             >
-              <div className={`w-full ${item.aspect} overflow-hidden relative`}>
-                <img
-                  src={item.src}
-                  alt={isAr ? item.titleAr : item.titleEn}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+              <img
+                src={item.src}
+                alt={isAr ? item.titleAr : item.titleEn}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
 
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              {/* Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 opacity-80 group-hover:opacity-90 transition-opacity" />
 
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/20 text-white backdrop-blur border border-white/20">
-                      {isAr ? item.categoryAr : item.categoryEn}
-                    </span>
-                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Maximize2 className="w-4 h-4" />
-                    </div>
+              {/* Content Overlay */}
+              <div className="relative z-10 p-6 sm:p-7 h-full flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/20 text-white backdrop-blur border border-white/20">
+                    {isAr ? item.categoryAr : item.categoryEn}
+                  </span>
+                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-4 h-4" />
                   </div>
+                </div>
 
-                  <div className="space-y-1">
-                    <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
-                      {isAr ? item.titleAr : item.titleEn}
-                    </h3>
-                    <p className="text-xs text-gray-300 opacity-90 hidden sm:block">
-                      {isAr ? 'انقر للمعاينة بالحجم الكامل' : 'Click to inspect in full resolution'}
-                    </p>
-                  </div>
+                <div className="space-y-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                    {isAr ? item.titleAr : item.titleEn}
+                  </h3>
+                  <p className="text-xs text-gray-300 opacity-90 hidden sm:block">
+                    {isAr ? 'انقر للمعاينة بالحجم الكامل' : 'Click to inspect in full resolution'}
+                  </p>
                 </div>
               </div>
             </div>

@@ -43,12 +43,12 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
 
   // Gallery of preserved brand application images
   const applicationImages = [
-    { src: getAssetUrl('/assets/media/7c47c148e9b75602dafbd6f8d6f6492f.jpg'), title: 'الهوية في الفضاءات العامة والمعارض' },
-    { src: getAssetUrl('/assets/media/c7dc6e6ccdbf9705843d4d5bad4e50ec.jpg'), title: 'المطبوعات الرسمية والدبلوماسية' },
-    { src: getAssetUrl('/assets/media/7458da0dd305ec790e7761f5e66aeb9f.jpg'), title: 'الأوشحة والأنسجة السورية التقليدية' },
-    { src: getAssetUrl('/assets/media/b415d4a46ec0157055feea4837b4c66e.jpg'), title: 'التطبيقات الرقمية وتصميم الواجهات' },
-    { src: getAssetUrl('/assets/media/6515842db4fd9195e73be4bf81db90cc.jpg'), title: 'اللافتات الحضرية وتجميل المدن' },
-    { src: getAssetUrl('/assets/media/93b6badaf8588070fa15d7466fbad083.jpg'), title: 'تغليف المنتجات السورية التراثية' }
+    { src: getAssetUrl('/assets/media/7c47c148e9b75602dafbd6f8d6f6492f.jpg'), titleAr: 'جواز السفر والوثائق الدبلوماسية', titleEn: 'Passports & State Documents' },
+    { src: getAssetUrl('/assets/media/c7dc6e6ccdbf9705843d4d5bad4e50ec.jpg'), titleAr: 'المراسم والبدلات الدبلوماسية الرسمية', titleEn: 'Diplomatic Protocol & Official Attire' },
+    { src: getAssetUrl('/assets/media/7458da0dd305ec790e7761f5e66aeb9f.jpg'), titleAr: 'الصروح والواجهات الحكومية الرسمية', titleEn: 'State Facades & Institutional Buildings' },
+    { src: getAssetUrl('/assets/media/b415d4a46ec0157055feea4837b4c66e.jpg'), titleAr: 'التطبيقات الرقمية وتصميم الواجهات', titleEn: 'Modern Digital Interfaces & Systems' },
+    { src: getAssetUrl('/assets/media/6515842db4fd9195e73be4bf81db90cc.jpg'), titleAr: 'اللافتات الحضرية وتجميل المدن', titleEn: 'Urban Wayfinding & Signage' },
+    { src: getAssetUrl('/assets/media/93b6badaf8588070fa15d7466fbad083.jpg'), titleAr: 'تغليف المنتجات السورية التراثية', titleEn: 'Heritage Syrian Product Packaging' }
   ];
 
   const patternImages = [
@@ -195,9 +195,9 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
               onClick={() =>
                 setPreviewModal({
                   src: app.src,
-                  title: app.title,
+                  title: isAr ? app.titleAr : app.titleEn,
                   format: 'Mockup',
-                  desc: app.title,
+                  desc: isAr ? app.titleAr : app.titleEn,
                   downloadUrl: app.src,
                 })
               }
@@ -206,7 +206,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
               <div className="aspect-[4/3] bg-gray-100 dark:bg-black/40 overflow-hidden relative">
                 <img
                   src={app.src}
-                  alt={app.title}
+                  alt={isAr ? app.titleAr : app.titleEn}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -215,7 +215,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
               </div>
               <div className="p-5 pt-0">
                 <h3 className="font-bold text-sm text-gray-900 dark:text-white">
-                  {app.title}
+                  {isAr ? app.titleAr : app.titleEn}
                 </h3>
               </div>
             </div>
