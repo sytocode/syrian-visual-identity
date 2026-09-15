@@ -144,25 +144,25 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
   ];
 
   return (
-    <div className="space-y-28">
+    <div className="space-y-20 sm:space-y-24">
       {/* 1. HERO SECTION WITH ARABESQUE PATTERN AND FLOATING EMBLEM */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-4 pt-16 pb-12 overflow-hidden">
-        {/* Authentic Syrian Heritage Pattern Watermark in Hero */}
+      <section className="relative px-4 pt-4 sm:pt-6 pb-12 sm:pb-16 overflow-hidden">
+        {/* Authentic Syrian Heritage Pattern Watermark in Hero with adjusted sizing & contrast */}
         <div 
-          className="absolute inset-0 opacity-[0.06] dark:opacity-[0.11] pointer-events-none bg-center"
+          className="absolute inset-0 opacity-[0.065] dark:opacity-[0.11] pointer-events-none bg-center"
           style={{
             backgroundImage: `url(${getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg')})`,
-            backgroundSize: '540px',
+            backgroundSize: '400px',
             backgroundRepeat: 'repeat',
-            maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
+            maskImage: 'radial-gradient(ellipse at center, black 40%, rgba(0,0,0,0.3) 75%, transparent 95%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, rgba(0,0,0,0.3) 75%, transparent 95%)',
           }}
         />
         
         {/* Ambient Gradient Lighting */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[350px] bg-radial from-[#428177]/20 via-[#054239]/10 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[350px] bg-radial from-[#428177]/20 via-[#054239]/10 to-transparent blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
           {/* Left / Main Text Column */}
           <div className="lg:col-span-7 text-center lg:text-start space-y-6">
             {/* National Seal Badge */}
@@ -254,7 +254,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
                     {isAr ? 'الجمهورية العربية السورية' : 'Syrian Arab Republic'}
                   </h3>
                   <p className="text-xs text-gray-300">
-                    {isAr ? 'شعار النجمة الثمانية المعمارية وتلاقي المسارات' : 'Eight-pointed architectural star and converging paths'}
+                    {isAr ? 'الختم والرمز الوطني الرسمي للجمهورية' : 'Official Sovereign Seal of the Syrian Arab Republic'}
                   </p>
                 </div>
 
