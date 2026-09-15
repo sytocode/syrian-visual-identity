@@ -1,6 +1,7 @@
 import React from 'react';
 import { strategicObjectives, targetAudiences, voiceAttributes } from '../data/brandStoryData';
 import { Sparkles, Target, Users, Megaphone, Compass, CheckCircle } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface BrandStoryPageProps {
   lang: 'ar' | 'en';
@@ -48,6 +49,15 @@ export const BrandStoryPage: React.FC<BrandStoryPageProps> = ({ lang }) => {
 
       {/* Brand Positioning: جامعة الشمل */}
       <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#054239] to-[#002623] text-white shadow-xl space-y-6 relative overflow-hidden">
+        {/* Authentic Umayyad Pattern Backdrop */}
+        <div 
+          className="absolute inset-0 opacity-20 pointer-events-none bg-center mix-blend-overlay"
+          style={{
+            backgroundImage: `url(${getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg')})`,
+            backgroundSize: '420px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
         <div className="max-w-3xl space-y-4">
           <span className="text-xs font-bold uppercase tracking-widest text-[#b9a779]">
             {isAr ? 'تموضع العلامة الوطنية' : 'National Brand Positioning'}

@@ -147,8 +147,17 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
     <div className="space-y-28">
       {/* 1. HERO SECTION WITH ARABESQUE PATTERN AND FLOATING EMBLEM */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-4 pt-16 pb-12 overflow-hidden">
-        {/* Subtle geometric star background overlay */}
-        <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.07] pointer-events-none bg-[radial-gradient(#988561_2px,transparent_2px)] [background-size:32px_32px]" />
+        {/* Authentic Syrian Heritage Pattern Watermark in Hero */}
+        <div 
+          className="absolute inset-0 opacity-[0.06] dark:opacity-[0.11] pointer-events-none bg-center"
+          style={{
+            backgroundImage: `url(${getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg')})`,
+            backgroundSize: '540px',
+            backgroundRepeat: 'repeat',
+            maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
+          }}
+        />
         
         {/* Ambient Gradient Lighting */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[350px] bg-radial from-[#428177]/20 via-[#054239]/10 to-transparent blur-3xl pointer-events-none" />
@@ -217,7 +226,14 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
               {/* Main Card */}
               <div className="relative rounded-3xl p-8 sm:p-10 bg-gradient-to-b from-[#054239] via-[#04332c] to-[#002623] text-white shadow-2xl border border-white/10 flex flex-col items-center text-center space-y-6 overflow-hidden group">
                 {/* Background Geometric Star Pattern Watermark */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#b9a779_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none" />
+                <div 
+                  className="absolute inset-0 opacity-25 pointer-events-none bg-center mix-blend-overlay"
+                  style={{
+                    backgroundImage: `url(${getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg')})`,
+                    backgroundSize: '360px',
+                    backgroundRepeat: 'repeat',
+                  }}
+                />
 
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#b9a779]/20 border border-[#b9a779]/30 text-[#edebe0] text-xs font-bold">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#b9a779]" />

@@ -217,6 +217,15 @@ Requirements:
     <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
       {/* Hero Section */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#054239] via-[#04332c] to-[#002623] text-white p-8 sm:p-14 shadow-2xl border border-[#b9a779]/30">
+        {/* Authentic Syrian Umayyad Pattern Backdrop */}
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none bg-center mix-blend-overlay"
+          style={{
+            backgroundImage: `url(${getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg')})`,
+            backgroundSize: '420px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#b9a779]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#428177]/20 rounded-full blur-3xl pointer-events-none" />
 

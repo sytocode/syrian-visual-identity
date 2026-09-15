@@ -8,6 +8,7 @@ import { ToolsPage } from './pages/ToolsPage';
 import { TeamsPage } from './pages/TeamsPage';
 import { DownloadsPage } from './pages/DownloadsPage';
 import { AIDevHubPage } from './pages/AIDevHubPage';
+import { getAssetUrl } from './utils/assets';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -69,7 +70,20 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fdfbf7] dark:bg-[#141414] text-gray-900 dark:text-gray-100 font-sans selection:bg-[#054239] selection:text-white transition-colors duration-200">
+    <div className="min-h-screen bg-[#fdfbf7] dark:bg-[#141414] text-gray-900 dark:text-gray-100 font-sans selection:bg-[#054239] selection:text-white transition-colors duration-200 relative overflow-x-hidden">
+      {/* Subtle Ambient Syrian Heritage Pattern Overlay for All Pages */}
+      <div
+        className="fixed top-0 left-0 right-0 h-[600px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.07] transition-opacity duration-300"
+        style={{
+          backgroundImage: `url(${getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg')})`,
+          backgroundSize: '480px',
+          backgroundRepeat: 'repeat',
+          backgroundPosition: 'top center',
+          maskImage: 'linear-gradient(to bottom, black 25%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 25%, transparent 100%)',
+        }}
+      />
+
       {/* Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -81,7 +95,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Page Content */}
-      <main className="pt-20">
+      <main className="pt-20 relative z-10">
         {activeTab === 'home' && <HomePage lang={lang} setActiveTab={handleTabChange} />}
         {activeTab === 'brand-story' && <BrandStoryPage lang={lang} />}
         {activeTab === 'brand-elements' && <BrandElementsPage lang={lang} />}

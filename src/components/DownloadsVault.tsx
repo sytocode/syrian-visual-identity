@@ -233,6 +233,15 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
 
       {/* Featured Master Package Card */}
       <div className="bg-gradient-to-br from-[#054239] to-[#002623] text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+        {/* Authentic Syrian Umayyad Pattern Backdrop */}
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none bg-center mix-blend-overlay"
+          style={{
+            backgroundImage: `url(${getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg')})`,
+            backgroundSize: '420px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
         {/* Subtle decorative background shape */}
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white/5 blur-2xl pointer-events-none" />
 

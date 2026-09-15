@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp, Share2, Heart, ExternalLink, Github } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface FooterProps {
   lang: 'ar' | 'en';
@@ -12,8 +13,22 @@ export const Footer: React.FC<FooterProps> = ({ lang, setActiveTab }) => {
   };
 
   return (
-    <footer className="bg-[#054239] text-[#edebe0] border-t border-[#002623] mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="bg-[#054239] text-[#edebe0] border-t border-[#002623] mt-24 relative overflow-hidden">
+      {/* Syrian Heritage Pattern Backdrop Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.14] bg-center mix-blend-screen"
+        style={{
+          backgroundImage: `url(${getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg')})`,
+          backgroundSize: '480px',
+          backgroundRepeat: 'repeat',
+          maskImage: 'linear-gradient(to bottom, black 40%, rgba(0,0,0,0.5) 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 40%, rgba(0,0,0,0.5) 100%)',
+        }}
+      />
+      {/* Decorative Golden Crest Border at top of footer */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#b9a779]/60 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Col 1: Identity Info */}
           <div className="md:col-span-2 space-y-4">

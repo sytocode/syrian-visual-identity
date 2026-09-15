@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Globe, Download } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface NavbarProps {
   activeTab: string;
@@ -49,12 +50,30 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 relative overflow-hidden ${
         isScrolled
-          ? 'bg-white/90 dark:bg-[#161616]/90 backdrop-blur-md shadow-md border-b border-gray-200 dark:border-white/10 py-3'
+          ? 'bg-white/92 dark:bg-[#161616]/92 backdrop-blur-md shadow-md border-b border-gray-200/80 dark:border-white/10 py-3'
           : 'bg-transparent py-5'
       }`}
     >
+      {/* Subtle Syrian Heritage Pattern Overlay in Header */}
+      <div 
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-500 overflow-hidden ${
+          isScrolled ? 'opacity-[0.06] dark:opacity-[0.10]' : 'opacity-[0.035] dark:opacity-[0.06]'
+        }`}
+        style={{
+          backgroundImage: `url(${getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg')})`,
+          backgroundSize: '360px',
+          backgroundRepeat: 'repeat',
+          backgroundPosition: 'center',
+          maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+        }}
+      />
+      {/* Decorative Gold Accent Line along bottom of navbar */}
+      {isScrolled && (
+        <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#b9a779]/50 to-transparent pointer-events-none" />
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
         <button
