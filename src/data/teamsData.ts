@@ -15,7 +15,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-0",
     "titleAr": "إدارة الفريق",
-    "titleEn": "إدارة الفريق",
+    "titleEn": "Team Leadership & Management",
     "members": [
       {
         "name": "وسيم قدورة",
@@ -37,7 +37,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-1",
     "titleAr": "فريق البحث والتحليل",
-    "titleEn": "فريق البحث والتحليل",
+    "titleEn": "Research & Analysis Team",
     "members": [
       {
         "name": "هلا قصقص",
@@ -74,7 +74,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-2",
     "titleAr": "فريق استراتيجية العلامة والمحتوى",
-    "titleEn": "فريق استراتيجية العلامة والمحتوى",
+    "titleEn": "Brand Strategy & Content Team",
     "members": [
       {
         "name": "حسام مبارك",
@@ -111,7 +111,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-3",
     "titleAr": "فريق التصميم والإبداع",
-    "titleEn": "فريق التصميم والإبداع",
+    "titleEn": "Design & Creative Team",
     "members": [
       {
         "name": "أنس حسناوي",
@@ -178,7 +178,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-4",
     "titleAr": "فريق الخط العربي والتايبوغرافي",
-    "titleEn": "فريق الخط العربي والتايبوغرافي",
+    "titleEn": "Calligraphy & Typography Team",
     "members": [
       {
         "name": "نضال ابراهيم آغا",
@@ -200,7 +200,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-5",
     "titleAr": "فريق الثري دي",
-    "titleEn": "فريق الثري دي",
+    "titleEn": "3D Modeling & Rendering Team",
     "members": [
       {
         "name": "أندريه لحام",
@@ -217,7 +217,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-6",
     "titleAr": "فريق الموشن والفيلم",
-    "titleEn": "فريق الموشن والفيلم",
+    "titleEn": "Motion Graphics & Film Team",
     "members": [
       {
         "name": "عمار دعيمس",
@@ -249,7 +249,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-7",
     "titleAr": "فريق البرمجة",
-    "titleEn": "فريق البرمجة",
+    "titleEn": "Software & Web Engineering Team",
     "members": [
       {
         "name": "محمد جركس",
@@ -271,7 +271,7 @@ export const teamDepartments: TeamDepartment[] = [
   {
     "id": "dept-8",
     "titleAr": "الصوت و التعليق الصوتي",
-    "titleEn": "الصوت و التعليق الصوتي",
+    "titleEn": "Sound & Voiceover Team",
     "members": [
       {
         "name": "مهند المنصور",

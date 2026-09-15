@@ -12,6 +12,7 @@ import {
   Layers
 } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
+import { DesignDocModal } from '../components/DesignDocModal';
 
 interface AIDevHubPageProps {
   lang: 'ar' | 'en';
@@ -20,6 +21,7 @@ interface AIDevHubPageProps {
 export const AIDevHubPage: React.FC<AIDevHubPageProps> = ({ lang }) => {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [activeSnippetTab, setActiveSnippetTab] = useState<'tailwind' | 'css' | 'tokens' | 'reactFlag' | 'reactEmblem'>('tailwind');
+  const [isDesignModalOpen, setIsDesignModalOpen] = useState(false);
 
   const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -108,13 +110,19 @@ export const SyrianEmblemBadge: React.FC<{ size?: number }> = ({ size = 64 }) =>
       titleEn: 'Official Government Navbar',
       descAr: 'طلب لتوليد ناف بار متجاوب يلتزم بألوان الهوية والشعار وعلم سوريا',
       descEn: 'Generate a responsive navbar with official forest green, gold accents, and emblem',
-      prompt: `قم بإنشاء مكون شريط علوي (Navbar) متجاوب باللغة العربية لموقع رسمي سوري باستخدام React و Tailwind CSS.
+      promptAr: `قم بإنشاء مكون شريط علوي (Navbar) متجاوب باللغة العربية لموقع رسمي سوري باستخدام React و Tailwind CSS.
 يجب الالتزام بالمعايير الرسمية للهوية البصرية السورية:
 - اللون الأساسي: الأخضر الغابي #054239 مع لمسات ذهبية #b9a779.
 - الخلفية عند التمرير: خلفية شبه شفافة مع تأثير blur بلون #054239/90 أو أبيض دافئ #fdfbf7.
 - الشعار: تضمين شعار الهوية البصرية من الرابط https://sytocode.github.io/syrian-visual-identity/assets/logo.svg
 - الخط: خط 'HayyakumAllah' أو خط عربي حديث أنيق.
-- اتجاه الصفحة: dir="rtl".`
+- اتجاه الصفحة: dir="rtl".`,
+      promptEn: `Create a responsive, production-ready navigation bar component in React with Tailwind CSS adhering to the official Syrian Visual Identity guidelines:
+- Primary Color: Forest Green #054239 with Golden Wheat accents (#b9a779).
+- Background on scroll: semi-transparent backdrop blur with #054239/90 or warm canvas #fdfbf7.
+- Emblem: include official vector logo from https://sytocode.github.io/syrian-visual-identity/assets/logo.svg
+- Typography: 'HayyakumAllah' or clean contemporary Arabic typography.
+- RTL layout support: dir="rtl" or dynamic based on language.`
     },
     {
       id: 'prompt-tailwind',
@@ -122,7 +130,7 @@ export const SyrianEmblemBadge: React.FC<{ size?: number }> = ({ size = 64 }) =>
       titleEn: 'Tailwind CSS Theme Setup',
       descAr: 'برومبت لإعداد باليت الألوان السورية كاملة في مشروعك',
       descEn: 'Configure complete Syrian visual identity color tokens in Tailwind',
-      prompt: `قم بتحديث ملف tailwind.config.js لمشروعي لإضافة نظام ألوان الهوية البصرية السورية الرسمية:
+      promptAr: `قم بتحديث ملف tailwind.config.js لمشروعي لإضافة نظام ألوان الهوية البصرية السورية الرسمية:
 Primary Forest:
   - forest: '#054239'
   - forest-light: '#428177'
@@ -141,7 +149,27 @@ Constitutional Flag:
   - flag-white: '#ffffff'
   - flag-black: '#000000'
   - flag-star: '#ce1126'
-يرجى توفير فئات الألوان وطرق تطبيقها في المكونات.`
+يرجى توفير فئات الألوان وطرق تطبيقها في المكونات.`,
+      promptEn: `Update my tailwind.config.js to register the official Syrian Visual Identity design tokens:
+Primary Forest:
+  - forest: '#054239'
+  - forest-light: '#428177'
+  - forest-dark: '#002623'
+Secondary Golden Wheat:
+  - gold: '#b9a779'
+  - gold-muted: '#988561'
+  - cream: '#edebe0'
+Accent:
+  - umber: '#6b1f2a'
+Canvas & Text:
+  - canvas: '#fdfbf7'
+  - charcoal: '#161616'
+Constitutional Flag:
+  - flag-green: '#007a3d'
+  - flag-white: '#ffffff'
+  - flag-black: '#000000'
+  - flag-star: '#ce1126'
+Provide utility classes and example component usage.`
     },
     {
       id: 'prompt-flag',
@@ -149,13 +177,20 @@ Constitutional Flag:
       titleEn: 'Strict Syrian Flag SVG (3:2)',
       descAr: 'رسم كود متجاوب دقيق رياضياً للعلم الوطني والنجوم الثلاث',
       descEn: 'Generate mathematically precise Syrian Flag SVG with 3 stars',
-      prompt: `اكتب مكون React متجاوب يرسم علم الجمهورية العربية السورية باستخدام كود SVG نقي.
+      promptAr: `اكتب مكون React متجاوب يرسم علم الجمهورية العربية السورية باستخدام كود SVG نقي.
 الشروط الدستورية الإلزامية:
 - النسبة: تماماً 3:2 (مثال: viewBox="0 0 900 600").
 - الشريط العلوي: أخضر (#007a3d).
 - الشريط الأوسط: أبيض (#ffffff).
 - الشريط السفلي: أسود (#000000).
-- النجوم: بالضبط ثلاث نجوم خماسية حمراء (#ce1126) موزعة بالتساوي أفقياً في الشريط الأبيض عند 25% و 50% و 75% من العرض مع توجيه الرأس للأعلى.`
+- النجوم: بالضبط ثلاث نجوم خماسية حمراء (#ce1126) موزعة بالتساوي أفقياً في الشريط الأبيض عند 25% و 50% و 75% من العرض مع توجيه الرأس للأعلى.`,
+      promptEn: `Write a responsive React component rendering the official Flag of the Syrian Arab Republic using pure SVG.
+Constitutional Requirements:
+- Exact 3:2 aspect ratio (e.g. viewBox="0 0 900 600").
+- Top stripe: Green (#007a3d).
+- Middle stripe: White (#ffffff).
+- Bottom stripe: Black (#000000).
+- Stars: Exactly three red (#ce1126) five-pointed stars evenly distributed horizontally across the white band at 25%, 50%, and 75% width, pointing upward.`
     },
     {
       id: 'prompt-governorate',
@@ -163,12 +198,18 @@ Constitutional Flag:
       titleEn: 'Governorate Heritage Card',
       descAr: 'توليد بطاقة لعرض معالم المحافظات الـ 14 مع رمزها',
       descEn: 'Card displaying governorate history and architectural vector symbol',
-      prompt: `اصنع بطاقة تفاعلية لمحافظة سورية (مثل دمشق أو حلب أو حمص) باستخدام Tailwind CSS.
+      promptAr: `اصنع بطاقة تفاعلية لمحافظة سورية (مثل دمشق أو حلب أو حمص) باستخدام Tailwind CSS.
 يجب أن تتضمن:
 1. عنوان المحافظة واللقب التاريخي.
 2. الرمز المعماري الخاص بالهوية البصرية (SVG).
 3. نبذة تاريخية، ودرجات ألوان مستوحاة من القمح الذهبي #b9a779 والأخضر الغابي #054239.
-4. تأثيرات تفاعلية أنيقة عند مرور الفأرة (Hover lift and soft gold border glow).`
+4. تأثيرات تفاعلية أنيقة عند مرور الفأرة (Hover lift and soft gold border glow).`,
+      promptEn: `Build an interactive governorate landmark showcase card (e.g., Damascus, Aleppo, Homs) with Tailwind CSS.
+Requirements:
+1. Governorate title and historical moniker.
+2. Official architectural emblem (SVG).
+3. Cultural background excerpt and color accents featuring Golden Wheat #b9a779 and Forest Green #054239.
+4. Subtle hover interaction with soft gold glow and elevation.`
     }
   ];
 
@@ -199,16 +240,14 @@ Constitutional Flag:
 
           {/* Quick Access Pills */}
           <div className="flex flex-wrap items-center gap-3 pt-4">
-            <a
-              href="https://github.com/sytocode/syrian-visual-identity/blob/main/DESIGN.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] text-xs font-bold shadow-md transition-all"
+            <button
+              type="button"
+              onClick={() => setIsDesignModalOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] text-xs font-bold shadow-md transition-all cursor-pointer"
             >
               <BookOpen className="w-4 h-4" />
-              <span>DESIGN.md (دليل التصميم الشامل)</span>
-              <ExternalLink className="w-3 h-3 opacity-60" />
-            </a>
+              <span>{lang === 'ar' ? 'DESIGN.md (معاينة وتحميل الدليل)' : 'DESIGN.md (Preview & Download)'}</span>
+            </button>
 
             <a
               href="https://sytocode.github.io/syrian-visual-identity/llms.txt"
@@ -396,14 +435,14 @@ Constitutional Flag:
                   {lang === 'ar' ? p.descAr : p.descEn}
                 </p>
                 <div className="mt-3 p-3 rounded-xl bg-gray-50 dark:bg-[#121212] border border-gray-200 dark:border-gray-800 text-xs text-gray-700 dark:text-gray-300 font-mono whitespace-pre-wrap max-h-36 overflow-y-auto">
-                  {p.prompt}
+                  {lang === 'ar' ? p.promptAr : p.promptEn}
                 </div>
               </div>
 
               <div className="pt-4 mt-2 border-t border-gray-100 dark:border-gray-800 flex justify-end">
                 <button
-                  onClick={() => handleCopy(p.prompt, p.id)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#054239] hover:bg-[#002623] text-white text-xs font-semibold transition-all shadow-sm"
+                  onClick={() => handleCopy(lang === 'ar' ? p.promptAr : p.promptEn, p.id)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#054239] hover:bg-[#002623] text-white text-xs font-semibold transition-all shadow-sm cursor-pointer"
                 >
                   {copiedKey === p.id ? (
                     <>
@@ -422,6 +461,13 @@ Constitutional Flag:
           ))}
         </div>
       </section>
+
+      {/* Full DESIGN.md Interactive Modal */}
+      <DesignDocModal
+        isOpen={isDesignModalOpen}
+        onClose={() => setIsDesignModalOpen(false)}
+        lang={lang}
+      />
     </div>
   );
 };

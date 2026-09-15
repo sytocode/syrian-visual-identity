@@ -22,24 +22,27 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
     );
   });
 
-  // Re-color SVG according to theme
-  const getThemedSvg = (rawSvg: string, theme: typeof iconColorThemes[0]) => {
+  // Re-color SVG according to theme and scope CSS classes to prevent collision and caching
+  const getThemedSvg = (rawSvg: string, theme: typeof iconColorThemes[0], id: string) => {
     if (!rawSvg) return '';
     let updated = rawSvg.replace(/#04018c/gi, theme.primary);
     updated = updated.replace(/fill:\s*#(?:fff|ffffff)/gi, `fill: ${theme.bg}`);
     updated = updated.replace(/fill="#(?:fff|ffffff)"/gi, `fill="${theme.bg}"`);
+    // Scope class names to avoid cross-SVG stylesheet collision
+    updated = updated.replace(/class="st([0-9]+)"/g, `class="st$1_${id}"`);
+    updated = updated.replace(/\.st([0-9]+)/g, `.st$1_${id}`);
     return updated;
   };
 
   const downloadSvg = (g: Governorate) => {
     const raw = governorateSvgs[g.svgFile] || '';
     if (!raw) return;
-    const content = getThemedSvg(raw, selectedTheme);
+    const content = getThemedSvg(raw, selectedTheme, g.id);
     const blob = new Blob([content], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `أيقونة_${g.nameAr}_${selectedTheme.nameAr}.svg`;
+    a.download = lang === 'ar' ? `أيقونة_${g.nameAr}_${selectedTheme.nameAr}.svg` : `Icon_${g.nameEn}_${selectedTheme.nameEn}.svg`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -118,7 +121,7 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 sm:gap-6">
         {filtered.map((g) => {
           const rawSvg = governorateSvgs[g.svgFile] || '';
-          const themed = getThemedSvg(rawSvg, selectedTheme);
+          const themed = getThemedSvg(rawSvg, selectedTheme, g.id);
 
           return (
             <div
@@ -127,6 +130,7 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
             >
               {/* SVG Display */}
               <div
+                key={`${g.id}-${selectedTheme.id}`}
                 className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center p-2 rounded-xl transition-transform group-hover:scale-105"
                 dangerouslySetInnerHTML={{
                   __html: themed,

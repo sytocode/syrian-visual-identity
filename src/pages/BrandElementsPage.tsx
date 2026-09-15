@@ -22,22 +22,26 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
     {
       titleAr: 'النجمة الثمانية والتراث الهندسي',
       titleEn: 'Eight-Pointed Star & Geometry',
-      descAr: 'تستند البنية الهندسية للشعار إلى التناظر النجمي الإسلامي والأموي المتأصل في الفنون والعمارة السورية عبر العصور.'
+      descAr: 'تستند البنية الهندسية للشعار إلى التناظر النجمي الإسلامي والأموي المتأصل في الفنون والعمارة السورية عبر العصور.',
+      descEn: 'The architectural framework stems from Islamic and Umayyad star symmetry deeply ingrained in historical Syrian art and architecture.'
     },
     {
       titleAr: 'القلب النابض في المركز',
       titleEn: 'The Pulsing Heart at the Core',
-      descAr: 'يرمز المركز إلى أن سوريا هي القلب الحيوي للمنطقة، وأن الإنسان السوري هو النبض الحقيقي الذي لا ينكسر.'
+      descAr: 'يرمز المركز إلى أن سوريا هي القلب الحيوي للمنطقة، وأن الإنسان السوري هو النبض الحقيقي الذي لا ينكسر.',
+      descEn: 'The core symbolizes Syria as the vibrant beating heart of the Levant, and the Syrian citizen as the true, resilient pulse.'
     },
     {
       titleAr: 'تلاقي المسارات والألوان',
       titleEn: 'Converging Lines & Colors',
-      descAr: 'تلاقي الخطوط يعبر عن تنوع الجغرافيا السورية من الساحل إلى الجبل والبادية والفرات في نسيج واحد متماسك.'
+      descAr: 'تلاقي الخطوط يعبر عن تنوع الجغرافيا السورية من الساحل إلى الجبل والبادية والفرات في نسيج واحد متماسك.',
+      descEn: 'Converging lines reflect the unity of Syria’s diverse geographical tapestry, from the Mediterranean coast to the mountains, plains, and the Euphrates.'
     },
     {
       titleAr: 'الحداثة التيبوغرافية',
       titleEn: 'Contemporary Calligraphy',
-      descAr: 'تجريد هندسي معاصر للخط العربي يعكس التطلع الرقمي المستقبلي مع الاحتفاظ بجلال الخط الكوفي الأصيل.'
+      descAr: 'تجريد هندسي معاصر للخط العربي يعكس التطلع الرقمي المستقبلي مع الاحتفاظ بجلال الخط الكوفي الأصيل.',
+      descEn: 'A modern geometric abstraction of Arabic calligraphy blending future-ready digital aesthetics with the timeless nobility of traditional Kufic script.'
     }
   ];
 
@@ -52,10 +56,10 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
   ];
 
   const patternImages = [
-    { src: getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg'), title: 'نمط الزخرفة الهندسية الأولى' },
-    { src: getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg'), title: 'نمط الزخرفة الهندسية الثانية' },
-    { src: getAssetUrl('/assets/media/07d0eca67be9d8ef47a424c23b33e4e7.jpg'), title: 'نمط الزخرفة الهندسية الثالثة' },
-    { src: getAssetUrl('/assets/media/46090a0515cd857e09c67ccc9425fbdc.jpg'), title: 'نمط الزخرفة الهندسية الرابعة' },
+    { src: getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg'), titleAr: 'نمط التناظر الأموي الهندسي', titleEn: 'Umayyad Geometric Star Motif' },
+    { src: getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg'), titleAr: 'نمط التسنيم وتداخل المسارات', titleEn: 'Converging Paths & Merlon Lattice' },
+    { src: getAssetUrl('/assets/media/07d0eca67be9d8ef47a424c23b33e4e7.jpg'), titleAr: 'نمط التعشيق والفسيفساء الدمشقية', titleEn: 'Damascene Interlocking Mosaic' },
+    { src: getAssetUrl('/assets/media/46090a0515cd857e09c67ccc9425fbdc.jpg'), titleAr: 'نمط الأرابيسك والزخرفة النباتية', titleEn: 'Levantine Floral Arabesque' },
   ];
 
   return (
@@ -92,7 +96,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
           <div className="lg:col-span-5 bg-gradient-to-br from-[#054239] to-[#002623] rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-lg relative min-h-[380px]">
             <img
               src={getAssetUrl('/assets/materials/logo.ai.svg')}
-              alt="شعار الهوية البصرية السورية"
+              alt={isAr ? 'شعار الهوية البصرية السورية' : 'Syrian Visual Identity Seal'}
               className="w-48 sm:w-56 h-auto drop-shadow-xl"
             />
             <span className="mt-8 text-xs font-semibold text-[#b9a779] tracking-wider uppercase">
@@ -114,7 +118,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
                   </h3>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                  {m.descAr}
+                  {isAr ? m.descAr : m.descEn}
                 </p>
               </div>
             ))}
@@ -147,9 +151,9 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
               onClick={() =>
                 setPreviewModal({
                   src: p.src,
-                  title: p.title,
+                  title: isAr ? p.titleAr : p.titleEn,
                   format: 'Pattern',
-                  desc: p.title,
+                  desc: isAr ? p.titleAr : p.titleEn,
                   downloadUrl: p.src,
                 })
               }
@@ -158,7 +162,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
               <div className="aspect-square bg-gray-100 dark:bg-black/40 overflow-hidden relative">
                 <img
                   src={p.src}
-                  alt={p.title}
+                  alt={isAr ? p.titleAr : p.titleEn}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -167,7 +171,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
               </div>
               <div className="p-3 text-center">
                 <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
-                  {p.title}
+                  {isAr ? p.titleAr : p.titleEn}
                 </span>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Share2, Heart, ExternalLink } from 'lucide-react';
+import { ArrowUp, Share2, Heart, ExternalLink, Github } from 'lucide-react';
 
 interface FooterProps {
   lang: 'ar' | 'en';
@@ -190,9 +190,21 @@ export const Footer: React.FC<FooterProps> = ({ lang, setActiveTab }) => {
 
         {/* Bottom Bar */}
         <div className="border-t border-[#002623]/80 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <p>
-            © 2026 {lang === 'ar' ? 'الجمهورية العربية السورية — تم إعادة البناء والتوثيق للنشر العام على GitHub Pages' : 'Syrian Arab Republic — Preserved & Hosted on GitHub Pages'}
-          </p>
+          <div className="flex items-center gap-3">
+            <p>
+              © 2026 {lang === 'ar' ? 'الجمهورية العربية السورية — الهوية البصرية الرسمية' : 'Syrian Arab Republic — Official Visual Identity'}
+            </p>
+            <a
+              href="https://github.com/sytocode/syrian-visual-identity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/20 hover:text-white/70 transition-colors p-1"
+              title="GitHub"
+              aria-label="GitHub Repository"
+            >
+              <Github className="w-3.5 h-3.5" />
+            </a>
+          </div>
 
           <button
             onClick={scrollToTop}

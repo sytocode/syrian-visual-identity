@@ -62,16 +62,17 @@ export const BrandStoryPage: React.FC<BrandStoryPageProps> = ({ lang }) => {
           </p>
 
           <div className="pt-4 flex flex-wrap gap-2 text-xs font-bold text-[#edebe0]">
-            {['رابطة', 'موثوقة', 'عصرية', 'غنية', 'متنوعة', 'ذات رؤية', 'مبتكرة', 'متجددة', 'قائدة التحول'].map(
-              (trait) => (
-                <span
-                  key={trait}
-                  className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-xs"
-                >
-                  {trait}
-                </span>
-              )
-            )}
+            {(isAr
+              ? ['رابطة', 'موثوقة', 'عصرية', 'غنية', 'متنوعة', 'ذات رؤية', 'مبتكرة', 'متجددة', 'قائدة التحول']
+              : ['Unifying', 'Authentic', 'Modern', 'Cultured', 'Diverse', 'Visionary', 'Innovative', 'Renewed', 'Transformative']
+            ).map((trait) => (
+              <span
+                key={trait}
+                className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-xs"
+              >
+                {trait}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -103,7 +104,7 @@ export const BrandStoryPage: React.FC<BrandStoryPageProps> = ({ lang }) => {
                 {isAr ? obj.titleAr : obj.titleEn}
               </h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                {obj.descAr}
+                {isAr ? obj.descAr : obj.descEn}
               </p>
             </div>
           ))}
@@ -176,7 +177,7 @@ export const BrandStoryPage: React.FC<BrandStoryPageProps> = ({ lang }) => {
                 {isAr ? aud.titleAr : aud.titleEn}
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
-                {aud.descAr}
+                {isAr ? aud.descAr : aud.descEn}
               </p>
             </div>
           ))}
@@ -206,7 +207,9 @@ export const BrandStoryPage: React.FC<BrandStoryPageProps> = ({ lang }) => {
               <span className="text-lg font-extrabold text-[#054239] dark:text-white block">
                 {isAr ? v.nameAr : v.nameEn}
               </span>
-              <p className="text-xs text-gray-500 leading-relaxed">{v.descAr}</p>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                {isAr ? v.descAr : v.descEn}
+              </p>
             </div>
           ))}
         </div>

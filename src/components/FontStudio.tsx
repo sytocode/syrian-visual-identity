@@ -87,7 +87,7 @@ export const FontStudio: React.FC<FontStudioProps> = ({ lang }) => {
                 حيّاكم الله
               </span>
               <span className="text-xs text-gray-500 mt-2">
-                أربعة أوزان: Light • Regular • Medium • Bold
+                {lang === 'ar' ? 'أربعة أوزان: Light • Regular • Medium • Bold' : 'Four weights: Light • Regular • Medium • Bold'}
               </span>
             </div>
             <div>
@@ -114,7 +114,7 @@ export const FontStudio: React.FC<FontStudioProps> = ({ lang }) => {
               className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#988561] text-xs font-semibold text-gray-800 dark:text-gray-200 transition"
             >
               <Download className="w-3.5 h-3.5 text-[#988561]" />
-              <span>تحميل TTF</span>
+              <span>{lang === 'ar' ? 'تحميل TTF' : 'Download TTF'}</span>
             </a>
             <a
               href={getAssetUrl('assets/fonts/HayyakumAllah-Regular.woff2')}
@@ -122,7 +122,7 @@ export const FontStudio: React.FC<FontStudioProps> = ({ lang }) => {
               className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#988561] text-xs font-semibold text-gray-800 dark:text-gray-200 transition"
             >
               <Download className="w-3.5 h-3.5 text-[#988561]" />
-              <span>تحميل WOFF2 للويب</span>
+              <span>{lang === 'ar' ? 'تحميل WOFF2 للويب' : 'Download WOFF2'}</span>
             </a>
           </div>
         </div>
@@ -182,7 +182,7 @@ export const FontStudio: React.FC<FontStudioProps> = ({ lang }) => {
             value={sampleText}
             onChange={(e) => setSampleText(e.target.value)}
             className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/70 dark:bg-black/30 text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#988561]"
-            placeholder="اكتب نصاً للمعاينة..."
+            placeholder={lang === 'ar' ? 'اكتب نصاً للمعاينة...' : 'Type sample text to preview...'}
           />
 
           <div
@@ -194,7 +194,7 @@ export const FontStudio: React.FC<FontStudioProps> = ({ lang }) => {
               lineHeight: 1.4,
             }}
           >
-            {sampleText || 'سوريا مهد الحضارة وملتقى الإنسانية'}
+            {sampleText || (lang === 'ar' ? 'سوريا مهد الحضارة وملتقى الإنسانية' : 'Syria: Cradle of Civilization & Meeting Point of Humanity')}
           </div>
         </div>
       </div>

@@ -206,26 +206,6 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
                 <span>{isAr ? 'الأدوات والعلم والخط' : 'Tools & Map'}</span>
               </button>
             </div>
-
-            {/* National Metrics Ribbon */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-gray-200/80 dark:border-gray-800/80 text-center lg:text-start">
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#054239] dark:text-[#edebe0]">14</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{isAr ? 'محافظة سورية موحدة' : 'Governorates'}</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#988561] dark:text-[#b9a779]">4000+</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{isAr ? 'عام من التراث الحضاري' : 'Years Heritage'}</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#054239] dark:text-[#edebe0]">125</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{isAr ? 'أصلاً رسمياً متجهاً' : 'Master Assets'}</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#988561] dark:text-[#b9a779]">100%</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{isAr ? 'توثيق مفتوح ومجاني' : 'Open Access'}</div>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Hero Visual Showcase Emblem Card */}
@@ -248,7 +228,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
                 <div className="py-4 relative">
                   <img
                     src={getAssetUrl('/assets/materials/logo.ai.svg')}
-                    alt="الرمز الرسمي للهوية البصرية السورية"
+                    alt={isAr ? 'الرمز الرسمي للهوية البصرية السورية' : 'Official Syrian Visual Identity Seal'}
                     className="w-48 sm:w-56 h-auto drop-shadow-2xl transform transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
@@ -281,7 +261,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
 
                   <a
                     href={getAssetUrl('/assets/materials/logo.ai.svg')}
-                    download="شعار_الهوية_البصرية_السورية.svg"
+                    download={isAr ? 'شعار_الهوية_البصرية_السورية.svg' : 'Syrian_Identity_Seal.svg'}
                     className="py-2.5 px-4 rounded-xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] text-xs font-bold transition shadow-sm inline-flex items-center justify-center gap-2"
                   >
                     <Download className="w-3.5 h-3.5" />

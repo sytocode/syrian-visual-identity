@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Download, FileArchive, Eye, Sparkles, CheckCircle2, Flag, Image as ImageIcon, Bot, Check } from 'lucide-react';
+import { Download, FileArchive, Eye, Sparkles, CheckCircle2, Flag, Image as ImageIcon, Bot, Check, BookOpen } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
 import { ImagePreviewModal } from './ImagePreviewModal';
+import { DesignDocModal } from './DesignDocModal';
 
 interface DownloadsVaultProps {
   lang: 'ar' | 'en';
@@ -13,7 +14,8 @@ interface DownloadItem {
   nameEn: string;
   format: string;
   file: string;
-  tag: string;
+  tagAr: string;
+  tagEn: string;
   bgType: 'dark' | 'light' | 'emerald';
   descAr: string;
   descEn: string;
@@ -23,6 +25,7 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
   const isAr = lang === 'ar';
   const [activeCategory, setActiveCategory] = useState<'all' | 'logos' | 'flag' | 'patterns'>('all');
   const [copiedAiId, setCopiedAiId] = useState<string | null>(null);
+  const [isDesignModalOpen, setIsDesignModalOpen] = useState(false);
   const [previewItem, setPreviewItem] = useState<{
     src: string;
     title: string;
@@ -49,7 +52,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Horizontal Logo (Vector SVG)',
       format: 'SVG',
       file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_horizontal_dark_green.svg'),
-      tag: 'الأكثر استخداماً',
+      tagAr: 'الأكثر استخداماً',
+      tagEn: 'Most Popular',
       bgType: 'light',
       descAr: 'الشعار الرسمي الأفقي للجمهورية العربية السورية باللون الأخضر الداكن المعتمد، ملائم للمطبوعات والمواقع ذات الخلفيات الفاتحة.',
       descEn: 'Official horizontal emblem in national forest green, ideal for light backgrounds and print media.'
@@ -60,7 +64,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Vertical Logo (Vector SVG)',
       format: 'SVG',
       file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_vertical_logo_.svg'),
-      tag: 'رسمي',
+      tagAr: 'رسمي',
+      tagEn: 'Official',
       bgType: 'light',
       descAr: 'الشعار الرسمي بالصيغة الرأسية/العمودية، مخصص للافتات والكتب والشهادات والمواد البروتوكولية.',
       descEn: 'Official vertical configuration designed for banners, certifications, and protocol materials.'
@@ -71,7 +76,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Logo Icon Gold (Vector SVG)',
       format: 'SVG',
       file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_logo_icon_gold.svg'),
-      tag: 'ذهبي',
+      tagAr: 'ذهبي',
+      tagEn: 'Gold Edition',
       bgType: 'emerald',
       descAr: 'الرمز النجمي التجريدي باللون الذهبي المذهب، مخصص للأوسمة والأيقونات الرقمية وشارات التطبيقات.',
       descEn: 'Abstract eight-pointed star emblem rendered in imperial gold, optimized for badges and app icons.'
@@ -82,7 +88,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Logotype Black (Vector SVG)',
       format: 'SVG',
       file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_logotype_black.svg'),
-      tag: 'نصي',
+      tagAr: 'نصي',
+      tagEn: 'Wordmark',
       bgType: 'light',
       descAr: 'الرمز اللفظي والتايبوغرافي الكوفي المعاصر "سوريا" باللون الأسود الفاحم.',
       descEn: 'Contemporary Kufic typographic wordmark "Syria" in charcoal black.'
@@ -93,7 +100,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'White Logo for Dark Backgrounds',
       format: 'SVG',
       file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_horizontal_white.svg'),
-      tag: 'للخلفيات الداكنة',
+      tagAr: 'للخلفيات الداكنة',
+      tagEn: 'For Dark Backgrounds',
       bgType: 'emerald',
       descAr: 'نسخة متجهة مفرغة بيضاء ناصعة مخصصة للاستخدام فوق الخلفيات الخضراء الداكنة والفوتوغرافية.',
       descEn: 'Crisp white vector logo optimized for deep green backdrops, dark mode, and photography overlays.'
@@ -104,7 +112,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'High-Res Transparent PNG',
       format: 'PNG',
       file: getAssetUrl('/assets/logos/Logos/PNG/Syrian_horizontal_dark_green.png'),
-      tag: 'بدقة عالية',
+      tagAr: 'بدقة عالية',
+      tagEn: 'High Resolution',
       bgType: 'light',
       descAr: 'شعار مفرغ الخلفية بدقة عالية جداً جاهز للاستخدام السريع في برامج التحرير والعروض التقديمية.',
       descEn: 'High-resolution raster PNG with transparent alpha background, ready for quick presentations and editing.'
@@ -118,7 +127,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Constitutional Flag Blueprint (SVG)',
       format: 'SVG',
       file: getAssetUrl('/assets/materials/syrian-flag-proportions.svg'),
-      tag: 'هندسي دقيق',
+      tagAr: 'هندسي دقيق',
+      tagEn: 'CAD Blueprint',
       bgType: 'light',
       descAr: 'الرسم المتجه الهندسي الدقيق لنسب العلم السوري وتوزيع النجوم الثلاثة وفق الدستور.',
       descEn: 'Scalable vector blueprint of Syrian flag constitutional proportions and star alignments.'
@@ -129,7 +139,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Syrian Flag Blueprint (High-Res PNG)',
       format: 'PNG',
       file: getAssetUrl('/assets/materials/syrian-flag-proportions.png'),
-      tag: 'معاينة جاهزة',
+      tagAr: 'معاينة جاهزة',
+      tagEn: 'Visual Guide',
       bgType: 'light',
       descAr: 'مخطط العلم السوري المصور بدقة عالية مع كافة الأبعاد والنسب القياسية 36:24.',
       descEn: 'High-resolution raster illustration of the Syrian flag design manual and engineering dimensions.'
@@ -143,7 +154,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Geometric Heritage Pattern 1',
       format: 'JPG',
       file: getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg'),
-      tag: 'تراثي',
+      tagAr: 'تراثي',
+      tagEn: 'Heritage Motif',
       bgType: 'light',
       descAr: 'النمط الزخرفي الهندسي المتكرر المستوحى من فنون الرخام والفسيفساء الأموية في دمشق.',
       descEn: 'Geometric repetitive ornamental motif inspired by Umayyad marble craftsmanship in Damascus.'
@@ -154,7 +166,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Geometric Heritage Pattern 2',
       format: 'JPG',
       file: getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg'),
-      tag: 'تراثي',
+      tagAr: 'تراثي',
+      tagEn: 'Heritage Motif',
       bgType: 'light',
       descAr: 'نمط تناظر نجمي هندسي متقدم مخصص للمطبوعات الفاخرة وخلفيات الهوية الرسمية.',
       descEn: 'Advanced geometric symmetry pattern tailored for luxury publications and identity backgrounds.'
@@ -165,7 +178,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Geometric Heritage Pattern 3',
       format: 'JPG',
       file: getAssetUrl('/assets/media/07d0eca67be9d8ef47a424c23b33e4e7.jpg'),
-      tag: 'تراثي',
+      tagAr: 'تراثي',
+      tagEn: 'Heritage Motif',
       bgType: 'light',
       descAr: 'نمط التسنيم المعماري السوري المستوحى من جدران القلاع والأبواب التاريخية في حلب وحمص.',
       descEn: 'Syrian architectural battlements motif derived from historic citadel gates across Aleppo and Homs.'
@@ -176,7 +190,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameEn: 'Geometric Heritage Pattern 4',
       format: 'JPG',
       file: getAssetUrl('/assets/media/46090a0515cd857e09c67ccc9425fbdc.jpg'),
-      tag: 'تراثي',
+      tagAr: 'تراثي',
+      tagEn: 'Heritage Motif',
       bgType: 'light',
       descAr: 'شبكة النجوم المتعانقة التي تعكس وحدة الجغرافيا والتنوع الثقافي السوري الأصيل.',
       descEn: 'Interlocking star constellation network representing Syrian cultural harmony and geographic unity.'
@@ -258,15 +273,24 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
             </div>
           </div>
 
-          <div className="pt-4">
+          <div className="pt-4 flex flex-wrap items-center gap-3">
             <a
               href={getAssetUrl('/downloads/Syrian_Identity_Official_Package.zip')}
               download="Syrian_Identity_Official_Package.zip"
-              className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] font-bold text-sm transition shadow-lg hover:shadow-xl active:scale-95"
+              className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] font-bold text-sm transition shadow-lg hover:shadow-xl active:scale-95 cursor-pointer"
             >
               <Download className="w-5 h-5" />
               <span>{isAr ? 'تحميل الحزمة الشاملة (4.5 MB ZIP)' : 'Download Master ZIP (4.5 MB)'}</span>
             </a>
+
+            <button
+              type="button"
+              onClick={() => setIsDesignModalOpen(true)}
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition backdrop-blur-xs active:scale-95 cursor-pointer"
+            >
+              <BookOpen className="w-5 h-5 text-[#b9a779]" />
+              <span>{isAr ? 'معاينة وتحميل DESIGN.md' : 'Preview & Download DESIGN.md'}</span>
+            </button>
           </div>
         </div>
       </div>
@@ -368,7 +392,7 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
             <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-[#988561] font-semibold">{item.tag}</span>
+                  <span className="text-xs text-[#988561] font-semibold">{isAr ? item.tagAr : item.tagEn}</span>
                 </div>
                 <h4 className="font-bold text-sm text-gray-900 dark:text-white leading-snug">
                   {isAr ? item.nameAr : item.nameEn}
@@ -435,6 +459,13 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
           lang={lang}
         />
       )}
+
+      {/* Full DESIGN.md Interactive Modal */}
+      <DesignDocModal
+        isOpen={isDesignModalOpen}
+        onClose={() => setIsDesignModalOpen(false)}
+        lang={lang}
+      />
     </div>
   );
 };

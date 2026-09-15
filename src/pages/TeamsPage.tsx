@@ -79,7 +79,7 @@ export const TeamsPage: React.FC<TeamsPageProps> = ({ lang }) => {
                     : 'bg-white dark:bg-[#1c1c1c] text-gray-600 dark:text-gray-400 hover:bg-gray-100'
                 }`}
               >
-                {d.titleAr}
+                {isAr ? d.titleAr : d.titleEn}
               </button>
             ))}
           </div>
@@ -92,7 +92,7 @@ export const TeamsPage: React.FC<TeamsPageProps> = ({ lang }) => {
           <div key={dept.id} className="space-y-6">
             <div className="border-b border-gray-200 dark:border-gray-800 pb-3 flex items-center justify-between">
               <h2 className="text-xl sm:text-2xl font-bold text-[#054239] dark:text-[#edebe0]">
-                {dept.titleAr}
+                {isAr ? dept.titleAr : dept.titleEn}
               </h2>
               <span className="text-xs font-mono text-gray-400">
                 {dept.members.length} {isAr ? 'أعضاء' : 'members'}
