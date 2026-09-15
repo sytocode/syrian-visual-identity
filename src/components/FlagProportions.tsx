@@ -120,16 +120,25 @@ export const FlagProportions: React.FC<FlagProportionsProps> = ({ lang }) => {
                   : 'Prepared & contributed by designer Abdurrahman Haddad (@abd_hmh). Covers history, usage, and correct display specs.'}
               </p>
             </div>
-            <a
-              href="https://drive.google.com/uc?export=download&id=1-HbfWI2PC76TTR6rKpmGl7GDcUlcZFXl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#054239] hover:bg-[#428177] text-white text-xs font-bold transition shadow-sm"
-            >
-              <Download className="w-4 h-4" />
-              <span>{lang === 'ar' ? 'تحميل الدليل (Google Drive)' : 'Download Flag Guide (PDF)'}</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-            </a>
+            <div className="flex flex-wrap items-center gap-2">
+              <a
+                href={getAssetUrl('/downloads/Syrian_Flag_Guide.pdf')}
+                download="Syrian_Flag_Guide.pdf"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#054239] hover:bg-[#428177] text-white text-xs font-bold transition shadow-sm"
+              >
+                <Download className="w-4 h-4" />
+                <span>{lang === 'ar' ? 'تحميل الدليل المباشر (PDF)' : 'Download Flag Guide (PDF)'}</span>
+              </a>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1-HbfWI2PC76TTR6rKpmGl7GDcUlcZFXl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 hover:text-gray-900 dark:hover:text-white transition text-xs"
+                title={lang === 'ar' ? 'مرآة بديلة (Google Drive)' : 'Mirror (Google Drive)'}
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
 
           {/* Card 2: Vector & CAD File Formats */}

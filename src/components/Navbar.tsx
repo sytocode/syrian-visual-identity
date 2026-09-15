@@ -109,16 +109,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setActiveTab(item.id);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
+                className={`group relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 overflow-hidden ${
                   isActive
-                    ? 'text-[#054239] dark:text-[#edebe0] bg-gray-100 dark:bg-white/10 font-bold'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5'
+                    ? 'text-[#054239] dark:text-[#edebe0] bg-gray-100/80 dark:bg-white/10 font-bold'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50/60 dark:hover:bg-white/5'
                 }`}
               >
-                {lang === 'ar' ? item.labelAr : item.labelEn}
-                {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#988561] rounded-full" />
-                )}
+                <span className="relative z-10">{lang === 'ar' ? item.labelAr : item.labelEn}</span>
+                {/* Animated Underline: Draws from center outward on hover and stays solid when active */}
+                <span
+                  className={`absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full transition-transform duration-300 ease-out origin-center ${
+                    isActive
+                      ? 'scale-x-100 bg-[#988561] opacity-100'
+                      : 'scale-x-0 group-hover:scale-x-100 bg-[#988561] opacity-0 group-hover:opacity-100'
+                  }`}
+                />
               </button>
             );
           })}

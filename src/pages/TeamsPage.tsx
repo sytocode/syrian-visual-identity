@@ -109,6 +109,8 @@ export const TeamsPage: React.FC<TeamsPageProps> = ({ lang }) => {
                     <img
                       src={getAssetUrl(member.photo)}
                       alt={member.name}
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         // Fallback avatar if photo failed
                         (e.target as HTMLElement).style.display = 'none';

@@ -340,6 +340,8 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
                 <img
                   src={pattern.src}
                   alt={isAr ? pattern.titleAr : pattern.titleEn}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
 
@@ -437,6 +439,8 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
               <img
                 src={item.src}
                 alt={isAr ? item.titleAr : item.titleEn}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
 

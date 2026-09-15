@@ -247,7 +247,7 @@ export const webMCPTools: WebMCPTool[] = [
         descriptionAr: match.descriptionAr,
         descriptionEn: match.descriptionEn,
         svgFile: match.svgFile,
-        directSvgUrl: getAssetUrl(`/assets/governorates/${match.svgFile}`),
+        directSvgUrl: getAssetUrl(`/assets/icons/governorates/${match.svgFile}`),
         inlineSvg: svgContent
       };
     }

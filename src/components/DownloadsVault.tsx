@@ -375,6 +375,8 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
               <img
                 src={item.file}
                 alt={isAr ? item.nameAr : item.nameEn}
+                loading="lazy"
+                decoding="async"
                 className="max-h-28 max-w-[80%] object-contain drop-shadow transition-transform duration-500 group-hover:scale-105"
               />
 

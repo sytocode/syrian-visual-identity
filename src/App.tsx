@@ -1,14 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import { HomePage } from './pages/HomePage';
-import { BrandStoryPage } from './pages/BrandStoryPage';
-import { BrandElementsPage } from './pages/BrandElementsPage';
-import { ToolsPage } from './pages/ToolsPage';
-import { TeamsPage } from './pages/TeamsPage';
-import { DownloadsPage } from './pages/DownloadsPage';
-import { AIDevHubPage } from './pages/AIDevHubPage';
 import { getAssetUrl } from './utils/assets';
+
+// Route-level code splitting for maximum performance and instant FCP
+const HomePage = React.lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
+const BrandStoryPage = React.lazy(() => import('./pages/BrandStoryPage').then(m => ({ default: m.BrandStoryPage })));
+const BrandElementsPage = React.lazy(() => import('./pages/BrandElementsPage').then(m => ({ default: m.BrandElementsPage })));
+const ToolsPage = React.lazy(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
+const TeamsPage = React.lazy(() => import('./pages/TeamsPage').then(m => ({ default: m.TeamsPage })));
+const DownloadsPage = React.lazy(() => import('./pages/DownloadsPage').then(m => ({ default: m.DownloadsPage })));
+const AIDevHubPage = React.lazy(() => import('./pages/AIDevHubPage').then(m => ({ default: m.AIDevHubPage })));
+
+const BrandedLoader: React.FC<{ lang: 'ar' | 'en' }> = ({ lang }) => (
+  <div className="min-h-[55vh] flex flex-col items-center justify-center space-y-4 py-24">
+    <div className="relative w-16 h-16 flex items-center justify-center">
+      <div className="absolute inset-0 rounded-2xl bg-[#054239]/10 dark:bg-white/5 animate-ping opacity-60" />
+      <div className="w-14 h-14 rounded-2xl bg-[#054239] text-[#b9a779] flex items-center justify-center shadow-lg border border-[#b9a779]/30 animate-pulse">
+        <svg viewBox="0 0 100 100" className="w-8 h-8 fill-current">
+          <path d="M50 8 L62 38 L95 38 L68 58 L78 90 L50 70 L22 90 L32 58 L5 38 L38 38 Z" />
+        </svg>
+      </div>
+    </div>
+    <p className="text-xs font-semibold tracking-wider text-[#988561] animate-pulse">
+      {lang === 'ar' ? 'جارٍ التحميل...' : 'Loading...'}
+    </p>
+  </div>
+);
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -96,13 +114,17 @@ export const App: React.FC = () => {
 
       {/* Main Page Content */}
       <main className="pt-20 relative z-10">
-        {activeTab === 'home' && <HomePage lang={lang} setActiveTab={handleTabChange} />}
-        {activeTab === 'brand-story' && <BrandStoryPage lang={lang} />}
-        {activeTab === 'brand-elements' && <BrandElementsPage lang={lang} />}
-        {activeTab === 'tools' && <ToolsPage lang={lang} />}
-        {activeTab === 'teams' && <TeamsPage lang={lang} />}
-        {activeTab === 'downloads' && <DownloadsPage lang={lang} />}
-        {activeTab === 'ai-hub' && <AIDevHubPage lang={lang} />}
+        <Suspense fallback={<BrandedLoader lang={lang} />}>
+          <div key={activeTab} className="animate-fadeIn">
+            {activeTab === 'home' && <HomePage lang={lang} setActiveTab={handleTabChange} />}
+            {activeTab === 'brand-story' && <BrandStoryPage lang={lang} />}
+            {activeTab === 'brand-elements' && <BrandElementsPage lang={lang} />}
+            {activeTab === 'tools' && <ToolsPage lang={lang} />}
+            {activeTab === 'teams' && <TeamsPage lang={lang} />}
+            {activeTab === 'downloads' && <DownloadsPage lang={lang} />}
+            {activeTab === 'ai-hub' && <AIDevHubPage lang={lang} />}
+          </div>
+        </Suspense>
       </main>
 
       {/* Footer */}

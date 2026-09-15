@@ -163,6 +163,8 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
                 <img
                   src={p.src}
                   alt={isAr ? p.titleAr : p.titleEn}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -211,6 +213,8 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
                 <img
                   src={app.src}
                   alt={isAr ? app.titleAr : app.titleEn}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
