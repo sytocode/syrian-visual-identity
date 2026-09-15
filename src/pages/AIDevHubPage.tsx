@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { 
   Bot, 
-  Terminal, 
   Code, 
-  Cpu, 
   Copy, 
   Check, 
-  Download, 
   ExternalLink, 
-  Play, 
   Sparkles, 
   FileCode, 
   Palette, 
-  Flag, 
   BookOpen, 
   Layers
 } from 'lucide-react';
-import { webMCPTools, SYRIAN_FLAG_SVG, SYRIAN_EMBLEM_SVG } from '../utils/webmcp';
 import { getAssetUrl } from '../utils/assets';
 
 interface AIDevHubPageProps {
@@ -25,113 +19,13 @@ interface AIDevHubPageProps {
 
 export const AIDevHubPage: React.FC<AIDevHubPageProps> = ({ lang }) => {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [activeRuleTab, setActiveRuleTab] = useState<'cursor' | 'claude' | 'copilot' | 'llms'>('cursor');
   const [activeSnippetTab, setActiveSnippetTab] = useState<'tailwind' | 'css' | 'tokens' | 'reactFlag' | 'reactEmblem'>('tailwind');
-
-  // WebMCP tester state
-  const [selectedTool, setSelectedTool] = useState<string>('get_color_palette');
-  const [toolArgCategory, setToolArgCategory] = useState<string>('all');
-  const [toolArgGov, setToolArgGov] = useState<string>('دمشق');
-  const [toolArgTopic, setToolArgTopic] = useState<string>('all');
-  const [toolOutput, setToolOutput] = useState<any>(null);
-  const [isExecuting, setIsExecuting] = useState<boolean>(false);
 
   const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
     setCopiedKey(key);
     setTimeout(() => setCopiedKey(null), 2500);
   };
-
-  const executeWebMcpTool = async () => {
-    setIsExecuting(true);
-    try {
-      let args: any = {};
-      if (selectedTool === 'get_color_palette') args = { category: toolArgCategory };
-      if (selectedTool === 'get_governorate_landmark') args = { governorate: toolArgGov };
-      if (selectedTool === 'get_brand_rules') args = { topic: toolArgTopic };
-      if (selectedTool === 'get_logo') args = { variant: 'primary', format: 'both' };
-      if (selectedTool === 'get_flag_specs') args = { include_svg: true };
-
-      const mcp = (window as any).syrianIdentityMCP;
-      if (mcp && typeof mcp.callTool === 'function') {
-        const res = await mcp.callTool(selectedTool, args);
-        setToolOutput(res);
-      } else {
-        const found = webMCPTools.find(t => t.name === selectedTool);
-        if (found) {
-          const res = await found.handler(args);
-          setToolOutput(res);
-        }
-      }
-    } catch (err: any) {
-      setToolOutput({ error: err?.message || 'Error executing tool' });
-    } finally {
-      setIsExecuting(false);
-    }
-  };
-
-  const cursorRulesCode = `# Syrian Visual Identity Rules for Cursor (.cursorrules)
-# https://sytocode.github.io/syrian-visual-identity/
-
-[project_identity]
-name = "Syrian Visual Identity"
-official_authority = "Syrian Arab Republic"
-brand_positioning = "جامعة الشمل (The Unifier)"
-
-[colors]
-syria_forest = "#054239" # Primary Forest Green (Must never be bright emerald)
-syria_forest_light = "#428177"
-syria_forest_dark = "#002623"
-syria_gold = "#b9a779" # Secondary Golden Wheat
-syria_gold_muted = "#988561"
-syria_cream = "#edebe0" # Warm Wheat Cream
-syria_umber = "#6b1f2a" # Deep Crimson Umber
-syria_canvas = "#fdfbf7" # Parchment Light Canvas
-syria_charcoal = "#161616" # Text Primary
-
-[flag_rules]
-ratio = "3:2"
-stripes = ["#007a3d (top)", "#ffffff (middle)", "#000000 (bottom)"]
-stars = "3 five-pointed red stars (#ce1126) centered in white band pointing upright"
-
-[typography]
-primary_arabic = "HayyakumAllah"
-body_font = "system-ui, Segoe UI, sans-serif"`;
-
-  const claudeRulesCode = `# CLAUDE.md - Syrian Visual Identity Guidelines
-This repository strictly adheres to the official Syrian Visual Identity (الهوية البصرية السورية).
-
-## Core Identity Constraints
-- Primary Brand Color: Forest Green \`#054239\` (Light: \`#428177\`, Dark: \`#002623\`).
-- Secondary Accent: Golden Wheat \`#b9a779\` (Cream: \`#edebe0\`).
-- Deep Accent: Umber Crimson \`#6b1f2a\`.
-- National Flag: Strictly 3:2 ratio. Top Green \`#007a3d\`, Middle White \`#ffffff\`, Bottom Black \`#000000\`. Three five-pointed Red stars \`#ce1126\`.
-- Arabic Heading Font: \`HayyakumAllah\` (حيّاكم الله).
-
-## Tools & Endpoints
-- WebMCP Manifest: https://sytocode.github.io/syrian-visual-identity/mcp.json
-- LLM Index: https://sytocode.github.io/syrian-visual-identity/llms.txt
-- CSS Tokens: https://sytocode.github.io/syrian-visual-identity/tokens.css`;
-
-  const copilotRulesCode = `# GitHub Copilot Custom Instructions for Syrian Visual Identity
-
-When generating HTML, Tailwind CSS, or component designs for this project:
-1. Always use official Syrian Identity color variables:
-   - Primary: Forest Green #054239
-   - Secondary: Golden Wheat #b9a779
-   - Backgrounds: Warm Parchment #fdfbf7
-2. Always construct the Syrian Flag with strict 3:2 ratio and 3 five-pointed red stars (#ce1126).
-3. Do NOT invent random green gradients; use official tokens from /tokens.css.
-4. For Arabic headers, declare font-family 'HayyakumAllah', system-ui, sans-serif.`;
-
-  const llmsIndexCode = `# Syrian Visual Identity (الهوية البصرية السورية)
-> Official Visual Identity, Design Tokens & Geometry Standards for the Syrian Arab Republic.
-
-- [Full LLM Specification](https://sytocode.github.io/syrian-visual-identity/llms-full.txt): Complete geometry specs, color matrices, and 14 governorates
-- [WebMCP Manifest](https://sytocode.github.io/syrian-visual-identity/mcp.json): Model Context Protocol tools for AI agents
-- [CSS Tokens](https://sytocode.github.io/syrian-visual-identity/tokens.css): Standard CSS Custom Properties
-- [Tailwind Preset](https://sytocode.github.io/syrian-visual-identity/syria-preset.js): Plug-and-play Tailwind theme configuration
-- [Design Tokens JSON](https://sytocode.github.io/syrian-visual-identity/tokens.json): Standard DTCG design token format`;
 
   const tailwindSnippet = `// tailwind.config.js
 module.exports = {
@@ -293,18 +187,29 @@ Constitutional Flag:
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight font-serif">
             {lang === 'ar'
-              ? 'تضمين الهوية البصرية في وكلاء الذكاء الاصطناعي'
-              : 'Empowering AI Coding Agents with Syrian Identity'}
+              ? 'تضمين الهوية البصرية في مشاريعك البرمجية والذكاء الاصطناعي'
+              : 'Empowering Developers & AI with Syrian Identity'}
           </h1>
 
           <p className="text-base sm:text-lg text-gray-200 leading-relaxed">
             {lang === 'ar'
-              ? 'كل ما يحتاجه المبرمج ووكيل الذكاء الاصطناعي (Cursor, Claude Code, GitHub Copilot, Windsurf, Devin) لإنتاج تصاميم ومواقع تلتزم التزاماً مطلقاً بالهوية البصرية الرسمية لسوريا.'
-              : 'Equip your coding assistants (Cursor, Claude Code, GitHub Copilot, Windsurf, Devin) with exact color palettes, geometries, design tokens, and WebMCP capabilities.'}
+              ? 'كل ما يحتاجه المبرمج ونماذج الذكاء الاصطناعي (Cursor, Claude Code, GitHub Copilot, Windsurf) لإنتاج تصاميم ومواقع تلتزم التزاماً مطلقاً بالهوية البصرية الرسمية لسوريا عبر رموز التصميم وقوالب الأكواد الجاهزة.'
+              : 'Equip your workflow and AI assistants with exact color palettes, geometries, and design tokens for the Syrian Visual Identity.'}
           </p>
 
           {/* Quick Access Pills */}
           <div className="flex flex-wrap items-center gap-3 pt-4">
+            <a
+              href="https://github.com/sytocode/syrian-visual-identity/blob/main/DESIGN.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] text-xs font-bold shadow-md transition-all"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>DESIGN.md (دليل التصميم الشامل)</span>
+              <ExternalLink className="w-3 h-3 opacity-60" />
+            </a>
+
             <a
               href="https://sytocode.github.io/syrian-visual-identity/llms.txt"
               target="_blank"
@@ -313,17 +218,6 @@ Constitutional Flag:
             >
               <FileCode className="w-4 h-4 text-[#b9a779]" />
               <span>llms.txt</span>
-              <ExternalLink className="w-3 h-3 opacity-60" />
-            </a>
-
-            <a
-              href="https://sytocode.github.io/syrian-visual-identity/mcp.json"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-medium backdrop-blur-sm transition-all"
-            >
-              <Cpu className="w-4 h-4 text-[#b9a779]" />
-              <span>WebMCP Registry (mcp.json)</span>
               <ExternalLink className="w-3 h-3 opacity-60" />
             </a>
 
@@ -352,274 +246,7 @@ Constitutional Flag:
         </div>
       </section>
 
-      {/* SECTION 1: AI Agent Rulesets (.cursorrules, CLAUDE.md, etc.) */}
-      <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-[#054239] dark:text-[#b9a779] text-sm font-bold uppercase tracking-wider mb-1">
-              <Terminal className="w-4 h-4" />
-              <span>{lang === 'ar' ? 'قواعد الوكلاء البرمجية' : 'AI Coding Rulesets'}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold">
-              {lang === 'ar' ? 'ملفات التوجيه الجاهزة للوكلاء' : 'Ready-to-use Agent Rules'}
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-2 bg-gray-100 dark:bg-[#202020] p-1.5 rounded-2xl border border-gray-200 dark:border-white/10">
-            <button
-              onClick={() => setActiveRuleTab('cursor')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                activeRuleTab === 'cursor'
-                  ? 'bg-[#054239] text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              Cursor (.cursorrules)
-            </button>
-            <button
-              onClick={() => setActiveRuleTab('claude')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                activeRuleTab === 'claude'
-                  ? 'bg-[#054239] text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              Claude (CLAUDE.md)
-            </button>
-            <button
-              onClick={() => setActiveRuleTab('copilot')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                activeRuleTab === 'copilot'
-                  ? 'bg-[#054239] text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              Copilot
-            </button>
-            <button
-              onClick={() => setActiveRuleTab('llms')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                activeRuleTab === 'llms'
-                  ? 'bg-[#054239] text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              llms.txt
-            </button>
-          </div>
-        </div>
-
-        {/* Code Box */}
-        <div className="relative rounded-2xl bg-[#111615] text-gray-200 border border-gray-800 shadow-xl overflow-hidden">
-          <div className="flex items-center justify-between px-6 py-3 bg-[#181f1e] border-b border-gray-800 text-xs">
-            <span className="font-mono text-gray-400">
-              {activeRuleTab === 'cursor' && '.cursorrules'}
-              {activeRuleTab === 'claude' && 'CLAUDE.md'}
-              {activeRuleTab === 'copilot' && '.github/copilot-instructions.md'}
-              {activeRuleTab === 'llms' && 'public/llms.txt'}
-            </span>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => {
-                  const code = 
-                    activeRuleTab === 'cursor' ? cursorRulesCode :
-                    activeRuleTab === 'claude' ? claudeRulesCode :
-                    activeRuleTab === 'copilot' ? copilotRulesCode : llmsIndexCode;
-                  handleCopy(code, 'rule-code');
-                }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all text-xs"
-              >
-                {copiedKey === 'rule-code' ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-green-400" />
-                    <span>{lang === 'ar' ? 'تم النسخ!' : 'Copied!'}</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{lang === 'ar' ? 'نسخ الملف' : 'Copy'}</span>
-                  </>
-                )}
-              </button>
-
-              <a
-                href={
-                  activeRuleTab === 'cursor' ? getAssetUrl('/rules/cursorrules.txt') :
-                  activeRuleTab === 'claude' ? getAssetUrl('/rules/CLAUDE.md') :
-                  activeRuleTab === 'copilot' ? getAssetUrl('/rules/copilot-instructions.md') :
-                  getAssetUrl('/llms.txt')
-                }
-                download
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#054239] hover:bg-[#428177] text-white transition-all text-xs font-semibold"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>{lang === 'ar' ? 'تحميل' : 'Download'}</span>
-              </a>
-            </div>
-          </div>
-
-          <pre className="p-6 text-xs sm:text-sm font-mono overflow-x-auto leading-relaxed max-h-96">
-            <code>
-              {activeRuleTab === 'cursor' && cursorRulesCode}
-              {activeRuleTab === 'claude' && claudeRulesCode}
-              {activeRuleTab === 'copilot' && copilotRulesCode}
-              {activeRuleTab === 'llms' && llmsIndexCode}
-            </code>
-          </pre>
-        </div>
-      </section>
-
-      {/* SECTION 2: WebMCP Live Testing Console */}
-      <section className="space-y-6">
-        <div>
-          <div className="flex items-center gap-2 text-[#054239] dark:text-[#b9a779] text-sm font-bold uppercase tracking-wider mb-1">
-            <Cpu className="w-4 h-4" />
-            <span>WebMCP (Model Context Protocol)</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold">
-            {lang === 'ar' ? 'منصة اختبار أدوات WebMCP الحية' : 'Live WebMCP Interactive Console'}
-          </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
-            {lang === 'ar'
-              ? 'تتيح هذه المنصة لوكلاء التصفح (مثل Chrome DevTools MCP و Claude in Browser) استدعاء أدوات الهوية البصرية برمجياً عبر معيار W3C WebML modelContext أو كائن window.syrianIdentityMCP.'
-              : 'This endpoint registers standard WebMCP tools allowing in-page AI agents and external MCP clients to retrieve official colors, vector logos, and flag geometries directly.'}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white dark:bg-[#181818] p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg">
-          {/* Controls Form */}
-          <div className="lg:col-span-5 space-y-4">
-            <div>
-              <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-2">
-                {lang === 'ar' ? 'اختر الأداة (WebMCP Tool)' : 'Select Tool'}
-              </label>
-              <select
-                value={selectedTool}
-                onChange={(e) => {
-                  setSelectedTool(e.target.value);
-                  setToolOutput(null);
-                }}
-                className="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-[#222] border border-gray-300 dark:border-gray-700 text-sm focus:ring-2 focus:ring-[#054239] outline-none"
-              >
-                <option value="get_color_palette">get_color_palette()</option>
-                <option value="get_logo">get_logo()</option>
-                <option value="get_flag_specs">get_flag_specs()</option>
-                <option value="get_governorate_landmark">get_governorate_landmark()</option>
-                <option value="get_brand_rules">get_brand_rules()</option>
-              </select>
-            </div>
-
-            {/* Dynamic arguments */}
-            {selectedTool === 'get_color_palette' && (
-              <div>
-                <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                  category (فئة الألوان)
-                </label>
-                <select
-                  value={toolArgCategory}
-                  onChange={(e) => setToolArgCategory(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-[#222] border border-gray-300 dark:border-gray-700 text-xs"
-                >
-                  <option value="all">all (الكل)</option>
-                  <option value="forest">forest (الأخضر الغابي)</option>
-                  <option value="wheat">wheat (القمح الذهبي)</option>
-                  <option value="umber">umber (العنبري)</option>
-                  <option value="flag">flag (ألوان العلم الدستوري)</option>
-                  <option value="neutral">neutral (الرماديات والأرضيات)</option>
-                </select>
-              </div>
-            )}
-
-            {selectedTool === 'get_governorate_landmark' && (
-              <div>
-                <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                  governorate (المحافظة)
-                </label>
-                <input
-                  type="text"
-                  value={toolArgGov}
-                  onChange={(e) => setToolArgGov(e.target.value)}
-                  placeholder="دمشق / Aleppo / حمص"
-                  className="w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-[#222] border border-gray-300 dark:border-gray-700 text-xs"
-                />
-              </div>
-            )}
-
-            {selectedTool === 'get_brand_rules' && (
-              <div>
-                <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                  topic (الموضوع)
-                </label>
-                <select
-                  value={toolArgTopic}
-                  onChange={(e) => setToolArgTopic(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-[#222] border border-gray-300 dark:border-gray-700 text-xs"
-                >
-                  <option value="all">all (كافة القواعد)</option>
-                  <option value="flag">flag (قواعد العلم)</option>
-                  <option value="emblem">emblem (قواعد الشعار)</option>
-                  <option value="typography">typography (الخطوط)</option>
-                  <option value="colors">colors (الألوان والتباين)</option>
-                </select>
-              </div>
-            )}
-
-            <button
-              onClick={executeWebMcpTool}
-              disabled={isExecuting}
-              className="w-full mt-2 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#054239] hover:bg-[#002623] text-white text-sm font-bold shadow-md transition-all disabled:opacity-50"
-            >
-              <Play className="w-4 h-4 fill-current" />
-              <span>
-                {isExecuting
-                  ? (lang === 'ar' ? 'جارِ التنفيذ...' : 'Executing...')
-                  : (lang === 'ar' ? 'تشغيل الأداة (Call Tool)' : 'Run Tool')}
-              </span>
-            </button>
-
-            <div className="p-3 rounded-xl bg-[#054239]/5 border border-[#054239]/20 text-xs text-gray-600 dark:text-gray-300 space-y-1">
-              <span className="font-semibold block text-[#054239] dark:text-[#b9a779]">
-                {lang === 'ar' ? 'معلومات الاتصال البرمجي:' : 'Programmatic Access:'}
-              </span>
-              <p className="font-mono text-[11px]">
-                window.syrianIdentityMCP.callTool('{selectedTool}', &#123;...&#125;)
-              </p>
-            </div>
-          </div>
-
-          {/* Output Viewer */}
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800 text-xs">
-              <span className="font-bold text-gray-600 dark:text-gray-300">
-                {lang === 'ar' ? 'مخرجات الأداة (Tool Response)' : 'Tool Response (JSON / SVG)'}
-              </span>
-              {toolOutput && (
-                <button
-                  onClick={() => handleCopy(JSON.stringify(toolOutput, null, 2), 'mcp-output')}
-                  className="flex items-center gap-1 text-[#054239] dark:text-[#b9a779] hover:underline"
-                >
-                  {copiedKey === 'mcp-output' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  <span>{copiedKey === 'mcp-output' ? (lang === 'ar' ? 'تم النسخ' : 'Copied') : (lang === 'ar' ? 'نسخ النتيجة' : 'Copy JSON')}</span>
-                </button>
-              )}
-            </div>
-
-            <div className="mt-3 flex-1 min-h-[220px] max-h-[360px] bg-[#0c100f] rounded-xl p-4 font-mono text-xs text-emerald-400 overflow-auto border border-gray-800">
-              {toolOutput ? (
-                <pre className="whitespace-pre-wrap">{JSON.stringify(toolOutput, null, 2)}</pre>
-              ) : (
-                <div className="h-full flex flex-col items-center justify-center text-gray-500 text-center py-12">
-                  <Cpu className="w-8 h-8 mb-2 opacity-40" />
-                  <p>{lang === 'ar' ? 'اضغط على "تشغيل الأداة" لاختبار الاستجابة الحية' : 'Click "Run Tool" to inspect live response'}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: Design Tokens & Components Snippets */}
+      {/* SECTION 1: Design Tokens & Components Snippets */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -733,7 +360,7 @@ Constitutional Flag:
         </div>
       </section>
 
-      {/* SECTION 4: AI Prompts Cookbook */}
+      {/* SECTION 2: AI Prompts Cookbook */}
       <section className="space-y-6">
         <div>
           <div className="flex items-center gap-2 text-[#054239] dark:text-[#b9a779] text-sm font-bold uppercase tracking-wider mb-1">

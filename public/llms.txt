@@ -4,6 +4,7 @@
 - Website: https://sytocode.github.io/syrian-visual-identity/
 - Repository: https://github.com/sytocode/syrian-visual-identity
 - Slogan: انتماءٌ راسخ يتجاوز الحدود | Steadfast Belonging Beyond Borders
+- Design System Manual: https://sytocode.github.io/syrian-visual-identity/DESIGN.md
 - Full LLM Reference: https://sytocode.github.io/syrian-visual-identity/llms-full.txt
 - Design Tokens CSS: https://sytocode.github.io/syrian-visual-identity/tokens.css
 - Tailwind Preset: https://sytocode.github.io/syrian-visual-identity/syria-preset.js

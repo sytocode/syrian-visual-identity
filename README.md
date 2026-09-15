@@ -70,27 +70,21 @@
 - **الحزمة الرسمية الشاملة**: ملف مضغوط `Syrian_Identity_Official_Package.zip` بحجم 4.5 ميغابايت يضم 125 ملفاً أصلياً بصيغ `SVG`, `PDF`, `EPS`, `PNG`.
 - **أزرار النسخ للذكاء الاصطناعي (Copy for AI)**: زر مخصص بجانب كل أصل لنسخ وسوم الـ HTML/Markdown المهيأة للإدراج الفوري في برومبتات الذكاء الاصطناعي.
 
-### 7. بوابة الذكاء الاصطناعي والمطورين (AI & Developer Hub & WebMCP)
-يوفر المشروع منظومة متكاملة لتمكين أي نموذج أو وكيل ذكاء اصطناعي برمجي (Cursor, Claude Code, GitHub Copilot, Windsurf, Devin, Chrome DevTools AI) من استهلاك الهوية البصرية بدقة متناهية ودون اختراع ألوان أو مقاسات خاطئة:
-- **دليل `llms.txt` و `llms-full.txt`**: مواصفة معيارية في جذر الموقع تُلخص فلسفة الهوية، الروابط المباشرة للمتجهات، معادلات الألوان، وهندسة العلم الدستوري.
-- **قواعد الوكلاء الجاهزة (Agent Rulesets)**:
-  - ملف `.cursorrules` لمحرر Cursor.
-  - ملف `CLAUDE.md` لأداة Claude Code و Anthropic.
-  - ملف `.github/copilot-instructions.md` لـ GitHub Copilot.
+### 7. الدليل الإرشادي الشامل وبوابة المطورين (DESIGN.md & AI Dev Hub)
+- **دليل التصميم الشامل ([DESIGN.md](./DESIGN.md))**:
+  - وثيقة معمارية شاملة تضم فلسفة الهوية، هندسة ومقاسات الشعار، قواعد العلم الدستوري، مصفوفة الألوان الكاملة ومستويات التباين، التايبوغرافي والخطوط، والرموز المعمارية للمحافظات الـ 14.
+- **دليل `llms.txt` و `llms-full.txt`**: مواصفة معيارية في جذر الموقع تُلخص فلسفة الهوية، الروابط المباشرة للمتجهات، معادلات الألوان، وهندسة العلم الدستوري للذكاء الاصطناعي.
 - **رموز التصميم القياسية (Design Tokens)**:
   - ملف `tokens.css`: متغيرات CSS قياسية وفئات مساعدة جاهزة (`.bg-syria-forest`, `.border-syria-gold`, إلخ).
   - ملف `syria-preset.js`: ملحق جاهز لـ Tailwind CSS يمكن استيراده مباشرة في `tailwind.config.js`.
   - ملف `tokens.json`: مواصفة قياسية بصيغة DTCG (Design Tokens Community Group).
+- **قواعد الوكلاء البرمجية (Agent Rulesets)**:
+  - ملف `.cursorrules` لمحرر Cursor.
+  - ملف `CLAUDE.md` لأداة Claude Code و Anthropic.
+  - ملف `.github/copilot-instructions.md` لـ GitHub Copilot.
 - **معيار WebMCP (Web Model Context Protocol)**:
-  - ملفات الاستكشاف: `/mcp.json` و `/.well-known/mcp.json`.
-  - واجهة المتصفح البرمجية: تسجيل تلقائي على `navigator.modelContext` (وفق مسودة W3C WebML) وكائن `window.syrianIdentityMCP`.
-  - أدوات WebMCP المدعومة:
-    - `get_color_palette({ category })`
-    - `get_logo({ variant, format })`
-    - `get_flag_specs({ include_svg })`
-    - `get_governorate_landmark({ governorate })`
-    - `get_brand_rules({ topic })`
-- **منصة اختبار تفاعلية (Live WebMCP Console)**: تشغيل واستعراض نتائج أدوات الـ WebMCP مباشرة من المتصفح مع معاينة الـ JSON والمتجهات.
+  - استكشاف قياسي عبر `/mcp.json` و `/.well-known/mcp.json`.
+  - تسجيل المتصفح التلقائي على `navigator.modelContext` وكائن `window.syrianIdentityMCP`.
 - **بنك أوامر الذكاء الاصطناعي (AI Prompt Cookbook)**: أوامر مدروسة بعناية لنسخها ولصقها في محادثات الذكاء الاصطناعي لإنشاء ترويسات ومكونات وعلم سوريا المتجاوب.
 
 ---

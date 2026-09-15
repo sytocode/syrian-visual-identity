@@ -2,6 +2,7 @@
 # الهوية البصرية الرسمية للجمهورية العربية السورية
 
 This exhaustive document provides AI coding assistants (Claude, Cursor, Copilot, ChatGPT, Gemini, Windsurf) with the complete design specifications, color systems, token definitions, SVG geometries, and implementation blueprints for the Syrian Visual Identity.
+Complete Design Manual: https://sytocode.github.io/syrian-visual-identity/DESIGN.md
 
 ---
 
