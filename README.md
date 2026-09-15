@@ -110,11 +110,16 @@ npm run preview
 ## 📦 النشر على GitHub Pages
 
 المشروع مزود مسبقاً بملف سير عمل تلقائي `.github/workflows/deploy.yml`:
-1. ارفع المشروع إلى مستودع GitHub الخاص بك في الفرع `main`.
+1. ارفع المشروع إلى مستودع GitHub:
+   ```bash
+   git remote add origin https://github.com/sytocode/syrian-visual-identity.git
+   git branch -M main
+   git push -u origin main
+   ```
 2. من إعدادات المستودع (Settings) -> انتقل إلى **Pages**.
 3. في قسم **Build and deployment**، اختر **Source**: **GitHub Actions**.
 4. عند كل عملية `git push` لفرع `main`، سيتم بناء الموقع ونشره تلقائياً على الرابط العام:
-   `https://<username>.github.io/<repo-name>/`
+   `https://sytocode.github.io/syrian-visual-identity/`
 
 ---
 
