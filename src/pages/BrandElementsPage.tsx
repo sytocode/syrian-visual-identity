@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ColorPaletteViewer } from '../components/ColorPaletteViewer';
-import { Sparkles, Layers, Image as ImageIcon, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Layers, Image as ImageIcon, CheckCircle2, Eye, Maximize2 } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
+import { ImagePreviewModal } from '../components/ImagePreviewModal';
 
 interface BrandElementsPageProps {
   lang: 'ar' | 'en';
@@ -9,6 +10,13 @@ interface BrandElementsPageProps {
 
 export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) => {
   const isAr = lang === 'ar';
+  const [previewModal, setPreviewModal] = useState<{
+    src: string;
+    title: string;
+    format: string;
+    desc: string;
+    downloadUrl?: string;
+  } | null>(null);
 
   const logoMeanings = [
     {
@@ -136,14 +144,26 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
           {patternImages.map((p, idx) => (
             <div
               key={idx}
-              className="rounded-2xl overflow-hidden bg-white dark:bg-[#1c1c1c] border border-gray-200 dark:border-gray-800 group shadow-xs hover:shadow-md transition"
+              onClick={() =>
+                setPreviewModal({
+                  src: p.src,
+                  title: p.title,
+                  format: 'Pattern',
+                  desc: p.title,
+                  downloadUrl: p.src,
+                })
+              }
+              className="rounded-2xl overflow-hidden bg-white dark:bg-[#1c1c1c] border border-gray-200 dark:border-gray-800 group shadow-xs hover:shadow-md transition cursor-pointer"
             >
-              <div className="aspect-square bg-gray-100 dark:bg-black/40 overflow-hidden">
+              <div className="aspect-square bg-gray-100 dark:bg-black/40 overflow-hidden relative">
                 <img
                   src={p.src}
                   alt={p.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Maximize2 className="w-5 h-5 text-white" />
+                </div>
               </div>
               <div className="p-3 text-center">
                 <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
@@ -172,14 +192,26 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
           {applicationImages.map((app, idx) => (
             <div
               key={idx}
-              className="rounded-3xl overflow-hidden bg-white dark:bg-[#1c1c1c] border border-gray-200 dark:border-gray-800 group shadow-sm hover:shadow-md transition space-y-3"
+              onClick={() =>
+                setPreviewModal({
+                  src: app.src,
+                  title: app.title,
+                  format: 'Mockup',
+                  desc: app.title,
+                  downloadUrl: app.src,
+                })
+              }
+              className="rounded-3xl overflow-hidden bg-white dark:bg-[#1c1c1c] border border-gray-200 dark:border-gray-800 group shadow-sm hover:shadow-md transition space-y-3 cursor-pointer"
             >
-              <div className="aspect-[4/3] bg-gray-100 dark:bg-black/40 overflow-hidden">
+              <div className="aspect-[4/3] bg-gray-100 dark:bg-black/40 overflow-hidden relative">
                 <img
                   src={app.src}
                   alt={app.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Maximize2 className="w-6 h-6 text-white" />
+                </div>
               </div>
               <div className="p-5 pt-0">
                 <h3 className="font-bold text-sm text-gray-900 dark:text-white">
@@ -190,6 +222,20 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
           ))}
         </div>
       </section>
+
+      {/* Image Preview Lightbox */}
+      {previewModal && (
+        <ImagePreviewModal
+          isOpen={!!previewModal}
+          onClose={() => setPreviewModal(null)}
+          imageSrc={previewModal.src}
+          title={previewModal.title}
+          format={previewModal.format}
+          description={previewModal.desc}
+          downloadUrl={previewModal.downloadUrl}
+          lang={lang}
+        />
+      )}
     </div>
   );
 };
