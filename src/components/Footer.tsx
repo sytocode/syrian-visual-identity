@@ -104,6 +104,11 @@ export const Footer: React.FC<FooterProps> = ({ lang, setActiveTab }) => {
                   {lang === 'ar' ? 'المكتبة الرقمية والتحميل' : 'Digital Vault & Downloads'}
                 </button>
               </li>
+              <li>
+                <button onClick={() => { setActiveTab('ai-hub'); scrollToTop(); }} className="text-[#b9a779] font-semibold hover:text-white transition flex items-center gap-1.5">
+                  <span>{lang === 'ar' ? 'بوابة الذكاء الاصطناعي والمطورين' : 'AI & Developer Hub'}</span>
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -154,6 +159,28 @@ export const Footer: React.FC<FooterProps> = ({ lang, setActiveTab }) => {
                   className="flex items-center gap-1 hover:text-white transition"
                 >
                   <span>{lang === 'ar' ? 'خط قمرة الرسمي (iWantype)' : 'Qomra Typeface (iWantype)'}</span>
+                  <ExternalLink className="w-3 h-3 text-[#b9a779]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://sytocode.github.io/syrian-visual-identity/llms.txt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-[#b9a779] hover:underline transition"
+                >
+                  <span>{lang === 'ar' ? 'ملف الذكاء الاصطناعي (llms.txt)' : 'LLM Specification (llms.txt)'}</span>
+                  <ExternalLink className="w-3 h-3 text-[#b9a779]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://sytocode.github.io/syrian-visual-identity/mcp.json"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-[#b9a779] hover:underline transition"
+                >
+                  <span>{lang === 'ar' ? 'واجهة WebMCP (سجل الأدوات)' : 'WebMCP Protocol (mcp.json)'}</span>
                   <ExternalLink className="w-3 h-3 text-[#b9a779]" />
                 </a>
               </li>

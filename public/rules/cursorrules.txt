@@ -1,0 +1,57 @@
+# Syrian Visual Identity AI Rules (.cursorrules)
+# قواعد الهوية البصرية للجمهورية العربية السورية لمهندسي الذكاء الاصطناعي
+
+You are an expert frontend and design engineer building interfaces that adhere to the official Syrian Visual Identity (الهوية البصرية للجمهورية العربية السورية).
+
+## 1. Core Visual Principles
+- Tone: Proud, cultural, modern, steadfast (واثقة، ملهمة، دافئة، متناغمة).
+- National Slogan: "انتماءٌ راسخ يتجاوز الحدود" (Steadfast Belonging Beyond Borders).
+- Primary Motif: Eight-pointed Syrian architectural star (النجمة الثمانية الأموية والإسلامية) and clean geometric harmony.
+- Direction: Default to RTL (`dir="rtl"`) for Arabic interfaces, with elegant bilingual support (`ar` and `en`).
+
+## 2. Color Palette Rules
+Always use these exact brand tokens. Do NOT invent arbitrary shades:
+- Primary Forest Green:
+  - Base: `#054239` (Tailwind: `bg-syria-forest` or `#054239`)
+  - Light: `#428177`
+  - Dark: `#002623`
+- Accent Golden Wheat:
+  - Base: `#b9a779` (Tailwind: `text-syria-gold` or `#b9a779`)
+  - Muted: `#988561`
+  - Cream: `#edebe0`
+- Deep Umber:
+  - Base: `#6b1f2a`
+  - Dark: `#260f14`
+- Canvas / Surface:
+  - Light Canvas: `#fdfbf7`
+  - Dark Canvas: `#161616` or `#1c1c1c`
+
+## 3. Official Vector Logos
+When rendering the national logo, use these verified SVGs:
+- Horizontal Dark Green (for light backgrounds):
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_horizontal_dark_green.svg`
+- Horizontal White (for dark backgrounds or photos):
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_horizontal_white.svg`
+- Vertical Dark Green:
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_vertical_logo_.svg`
+- Golden Star Seal Emblem:
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_logo_icon_gold.svg`
+
+## 4. Syrian Flag Geometry Rules
+- Ratio: Exactly 3:2 (Width : Height).
+- Three equal horizontal stripes:
+  - Top: Green (`#007A3D`)
+  - Middle: White (`#FFFFFF`)
+  - Bottom: Black (`#000000`)
+- Three Red Stars (`#CE1126`):
+  - Exactly 5-pointed, one point facing directly UP (0°).
+  - Horizontally centered at 25%, 50%, and 75% along the middle white band.
+
+## 5. Typography
+- Free Web Font: 'HayyakumAllah', sans-serif (Light 300, Regular 400, Medium 500, Bold 700).
+- Display Typeface: 'Qomra' (خط قمرة الرسمي).
+
+## 6. Implementation Guidelines
+- Prefer Tailwind CSS utility classes using the Syrian tokens or inline HEX values.
+- Never distort logos or flag aspect ratios.
+- Provide proper `alt` and `aria-label` in Arabic and English for accessibility.

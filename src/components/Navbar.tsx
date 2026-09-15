@@ -36,6 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'tools', labelAr: 'الأدوات والرموز', labelEn: 'Tools & Assets' },
     { id: 'teams', labelAr: 'فريق العمل', labelEn: 'The Team' },
     { id: 'downloads', labelAr: 'المكتبة الرقمية', labelEn: 'Downloads' },
+    { id: 'ai-hub', labelAr: 'الذكاء الاصطناعي', labelEn: 'AI & Dev Hub' },
   ];
 
   const toggleLanguage = () => {

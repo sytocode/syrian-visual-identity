@@ -7,6 +7,7 @@ import { BrandElementsPage } from './pages/BrandElementsPage';
 import { ToolsPage } from './pages/ToolsPage';
 import { TeamsPage } from './pages/TeamsPage';
 import { DownloadsPage } from './pages/DownloadsPage';
+import { AIDevHubPage } from './pages/AIDevHubPage';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -41,7 +42,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'brand-story', 'brand-elements', 'tools', 'teams', 'downloads'].includes(hash)) {
+      if (['home', 'brand-story', 'brand-elements', 'tools', 'teams', 'downloads', 'ai-hub'].includes(hash)) {
         setActiveTab(hash);
       }
     };
@@ -75,6 +76,7 @@ export const App: React.FC = () => {
         {activeTab === 'tools' && <ToolsPage lang={lang} />}
         {activeTab === 'teams' && <TeamsPage lang={lang} />}
         {activeTab === 'downloads' && <DownloadsPage lang={lang} />}
+        {activeTab === 'ai-hub' && <AIDevHubPage lang={lang} />}
       </main>
 
       {/* Footer */}

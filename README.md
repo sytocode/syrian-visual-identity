@@ -68,6 +68,30 @@
 - **نافذة المعاينة المكبرة (Lightbox Modal)**: ميزة فحص كل أصل بدقة عالية مع إمكانية تبديل لون الخلفية (شبكة شفافة، داكنة، خضراء زمردية، أو فاتحة) ونسخ رابط التحميل أو التنزيل المباشر.
 - **تبويبات التصفية السريعة**: تصفية الأصول حسب الفئة (كافة الأصول، الشعارات والرموز، مخططات العلم، الأنماط التراثية).
 - **الحزمة الرسمية الشاملة**: ملف مضغوط `Syrian_Identity_Official_Package.zip` بحجم 4.5 ميغابايت يضم 125 ملفاً أصلياً بصيغ `SVG`, `PDF`, `EPS`, `PNG`.
+- **أزرار النسخ للذكاء الاصطناعي (Copy for AI)**: زر مخصص بجانب كل أصل لنسخ وسوم الـ HTML/Markdown المهيأة للإدراج الفوري في برومبتات الذكاء الاصطناعي.
+
+### 7. بوابة الذكاء الاصطناعي والمطورين (AI & Developer Hub & WebMCP)
+يوفر المشروع منظومة متكاملة لتمكين أي نموذج أو وكيل ذكاء اصطناعي برمجي (Cursor, Claude Code, GitHub Copilot, Windsurf, Devin, Chrome DevTools AI) من استهلاك الهوية البصرية بدقة متناهية ودون اختراع ألوان أو مقاسات خاطئة:
+- **دليل `llms.txt` و `llms-full.txt`**: مواصفة معيارية في جذر الموقع تُلخص فلسفة الهوية، الروابط المباشرة للمتجهات، معادلات الألوان، وهندسة العلم الدستوري.
+- **قواعد الوكلاء الجاهزة (Agent Rulesets)**:
+  - ملف `.cursorrules` لمحرر Cursor.
+  - ملف `CLAUDE.md` لأداة Claude Code و Anthropic.
+  - ملف `.github/copilot-instructions.md` لـ GitHub Copilot.
+- **رموز التصميم القياسية (Design Tokens)**:
+  - ملف `tokens.css`: متغيرات CSS قياسية وفئات مساعدة جاهزة (`.bg-syria-forest`, `.border-syria-gold`, إلخ).
+  - ملف `syria-preset.js`: ملحق جاهز لـ Tailwind CSS يمكن استيراده مباشرة في `tailwind.config.js`.
+  - ملف `tokens.json`: مواصفة قياسية بصيغة DTCG (Design Tokens Community Group).
+- **معيار WebMCP (Web Model Context Protocol)**:
+  - ملفات الاستكشاف: `/mcp.json` و `/.well-known/mcp.json`.
+  - واجهة المتصفح البرمجية: تسجيل تلقائي على `navigator.modelContext` (وفق مسودة W3C WebML) وكائن `window.syrianIdentityMCP`.
+  - أدوات WebMCP المدعومة:
+    - `get_color_palette({ category })`
+    - `get_logo({ variant, format })`
+    - `get_flag_specs({ include_svg })`
+    - `get_governorate_landmark({ governorate })`
+    - `get_brand_rules({ topic })`
+- **منصة اختبار تفاعلية (Live WebMCP Console)**: تشغيل واستعراض نتائج أدوات الـ WebMCP مباشرة من المتصفح مع معاينة الـ JSON والمتجهات.
+- **بنك أوامر الذكاء الاصطناعي (AI Prompt Cookbook)**: أوامر مدروسة بعناية لنسخها ولصقها في محادثات الذكاء الاصطناعي لإنشاء ترويسات ومكونات وعلم سوريا المتجاوب.
 
 ---
 

@@ -1,0 +1,66 @@
+# Syrian Visual Identity | الهوية البصرية للجمهورية العربية السورية
+> Official documentation and design system for the Syrian Visual Identity, preserved and curated for developers and AI coding agents.
+
+- Website: https://sytocode.github.io/syrian-visual-identity/
+- Repository: https://github.com/sytocode/syrian-visual-identity
+- Slogan: انتماءٌ راسخ يتجاوز الحدود | Steadfast Belonging Beyond Borders
+- Full LLM Reference: https://sytocode.github.io/syrian-visual-identity/llms-full.txt
+- Design Tokens CSS: https://sytocode.github.io/syrian-visual-identity/tokens.css
+- Tailwind Preset: https://sytocode.github.io/syrian-visual-identity/syria-preset.js
+- WebMCP Manifest: https://sytocode.github.io/syrian-visual-identity/mcp.json
+- AI Ruleset (.cursorrules): https://sytocode.github.io/syrian-visual-identity/rules/cursorrules.txt
+
+## Official Color Palette
+Use these exact color values in all interfaces representing Syria:
+
+### 1. Forest Green (الأخضر الغابي - Primary Brand Color)
+- Main / Primary: #054239 | rgb(5, 66, 57) | oklch(0.33 0.08 175) | Tailwind: bg-syria-forest / #054239
+- Light: #428177 | rgb(66, 129, 119) | oklch(0.55 0.08 175)
+- Deep / Dark: #002623 | rgb(0, 38, 35) | oklch(0.20 0.06 175)
+
+### 2. Golden Wheat (القمح الذهبي - Accent / Secondary Color)
+- Accent Gold: #b9a779 | rgb(185, 167, 121) | oklch(0.72 0.08 92) | Tailwind: text-syria-gold / #b9a779
+- Muted Gold: #988561 | rgb(152, 133, 97) | oklch(0.61 0.07 90)
+- Light Cream: #edebe0 | rgb(237, 235, 224) | oklch(0.93 0.02 95)
+
+### 3. Deep Umber (العنبري الدمشقي)
+- Base: #6b1f2a | rgb(107, 31, 42)
+- Deep: #4a151e | rgb(74, 21, 30)
+- Dark: #260f14 | rgb(38, 15, 20)
+
+### 4. Charcoal & Surface (الفحمي والأرضيات)
+- Pure Surface: #ffffff | rgb(255, 255, 255)
+- Text Slate: #3d3a3b | rgb(61, 58, 59)
+- Dark Canvas: #161616 | rgb(22, 22, 22)
+
+## Official Logos (Direct SVG URLs)
+- Horizontal Logo (Dark Green): https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_horizontal_dark_green.svg
+- Horizontal Logo (White for dark backdrops): https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_horizontal_white.svg
+- Vertical Logo (Dark Green): https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_vertical_logo_.svg
+- Official Seal Icon (Gold): https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_logo_icon_gold.svg
+- Official Wordmark (Black Logotype): https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_logotype_black.svg
+- Complete Master Package (125 Assets ZIP): https://sytocode.github.io/syrian-visual-identity/downloads/Syrian_Identity_Official_Package.zip
+
+## Syrian Constitutional Flag Specifications
+- Aspect Ratio: Exactly 3:2 (36 width by 24 height units).
+- Three horizontal equal bands (8 units each):
+  1. Top Band: Green (#007A3D or official constitutional green)
+  2. Middle Band: White (#FFFFFF)
+  3. Bottom Band: Black (#000000)
+- Three Red Five-Pointed Stars (#CE1126):
+  - Placed horizontally in the middle white band.
+  - Centered at horizontal coordinates: 25%, 50%, and 75% of total flag width.
+  - Each star points strictly upwards (one tip facing straight up).
+  - Scalable Flag SVG Blueprint: https://sytocode.github.io/syrian-visual-identity/assets/materials/syrian-flag-proportions.svg
+
+## Typography
+- Display / Headline Font: Qomra (خط قمرة) - Official typeface by iWantype.
+- Body / Free Web Font: Hayyakum Allah (خط حيّاكم الله) - 4 weights: Light (300), Regular (400), Medium (500), Bold (700).
+
+## WebMCP Quick Tool Discovery
+This site supports WebMCP (`navigator.modelContext` / `window.syrianIdentityMCP`):
+- `get_color_palette`: Returns all colors and token classes.
+- `get_logo`: Returns SVG URLs and vectors.
+- `get_flag_specs`: Returns exact SVG geometry and constitutional rules.
+- `get_governorate_landmark`: Returns SVG and info for all 14 governorates.
+- Manifest endpoint: https://sytocode.github.io/syrian-visual-identity/mcp.json

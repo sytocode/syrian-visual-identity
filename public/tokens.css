@@ -1,0 +1,74 @@
+/**
+ * Syrian Visual Identity - Official Design Tokens CSS
+ * https://sytocode.github.io/syrian-visual-identity/
+ */
+
+:root {
+  /* Primary Palette: Forest Green */
+  --syria-forest-main: #054239;
+  --syria-forest-light: #428177;
+  --syria-forest-dark: #002623;
+
+  /* Secondary Palette: Golden Wheat */
+  --syria-wheat-main: #b9a779;
+  --syria-wheat-muted: #988561;
+  --syria-wheat-cream: #edebe0;
+
+  /* Accent Palette: Deep Umber */
+  --syria-umber-base: #6b1f2a;
+  --syria-umber-deep: #4a151e;
+  --syria-umber-dark: #260f14;
+
+  /* Neutrals & Surfaces */
+  --syria-surface-canvas: #fdfbf7;
+  --syria-surface-card: #ffffff;
+  --syria-text-primary: #161616;
+  --syria-text-secondary: #3d3a3b;
+  --syria-border: #e5e0d8;
+
+  /* Constitutional Flag Colors */
+  --syria-flag-green: #007a3d;
+  --syria-flag-white: #ffffff;
+  --syria-flag-black: #000000;
+  --syria-flag-red-star: #ce1126;
+
+  /* Typography */
+  --font-syria-arabic: 'HayyakumAllah', system-ui, -apple-system, sans-serif;
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --syria-surface-canvas: #141414;
+    --syria-surface-card: #1c1c1c;
+    --syria-text-primary: #fdfbf7;
+    --syria-text-secondary: #edebe0;
+    --syria-border: #2e2e2e;
+  }
+}
+
+.dark {
+  --syria-surface-canvas: #141414;
+  --syria-surface-card: #1c1c1c;
+  --syria-text-primary: #fdfbf7;
+  --syria-text-secondary: #edebe0;
+  --syria-border: #2e2e2e;
+}
+
+/* Plug-and-play Utility Classes */
+.bg-syria-forest { background-color: var(--syria-forest-main); }
+.bg-syria-forest-light { background-color: var(--syria-forest-light); }
+.bg-syria-forest-dark { background-color: var(--syria-forest-dark); }
+.text-syria-forest { color: var(--syria-forest-main); }
+
+.bg-syria-gold { background-color: var(--syria-wheat-main); }
+.text-syria-gold { color: var(--syria-wheat-main); }
+.border-syria-gold { border-color: var(--syria-wheat-main); }
+
+.bg-syria-cream { background-color: var(--syria-wheat-cream); }
+.text-syria-cream { color: var(--syria-wheat-cream); }
+
+.bg-syria-umber { background-color: var(--syria-umber-base); }
+.text-syria-umber { color: var(--syria-umber-base); }
+
+.font-hayyakum { font-family: var(--font-syria-arabic); }

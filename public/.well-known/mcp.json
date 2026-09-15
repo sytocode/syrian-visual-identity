@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Syrian Visual Identity WebMCP",
+  "version": "1.0.0",
+  "description": "Official Web Model Context Protocol (WebMCP) tool registry and specification for the Syrian Visual Identity.",
+  "homepage": "https://sytocode.github.io/syrian-visual-identity/",
+  "mcpEndpoint": "https://sytocode.github.io/syrian-visual-identity/mcp.json",
+  "clientInterface": "window.syrianIdentityMCP",
+  "tools": [
+    {
+      "name": "get_color_palette",
+      "description": "Returns the complete Syrian Visual Identity color system (HEX, RGB, CMYK, Pantone, CSS variables, and usage rules)."
+    },
+    {
+      "name": "get_logo",
+      "description": "Returns Syrian national emblem and visual identity logo URLs, vector details, and inline SVG markup with safety margins."
+    },
+    {
+      "name": "get_flag_specs",
+      "description": "Returns official constitutional Syrian Flag technical specifications: 2:3 ratio, exact tricolor dimensions, and 3 red stars geometry with vector SVG."
+    },
+    {
+      "name": "get_governorate_landmark",
+      "description": "Returns the architectural emblem, landmark name, history, and SVG icon for any of the 14 Syrian governorates."
+    },
+    {
+      "name": "get_brand_rules",
+      "description": "Returns official compliance dos and don'ts for Syrian visual identity typography, emblem spacing, color contrast, and flag respect guidelines."
+    }
+  ]
+}

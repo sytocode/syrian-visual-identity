@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, FileArchive, Eye, Sparkles, CheckCircle2, Flag, Image as ImageIcon } from 'lucide-react';
+import { Download, FileArchive, Eye, Sparkles, CheckCircle2, Flag, Image as ImageIcon, Bot, Check } from 'lucide-react';
 import { getAssetUrl } from '../utils/assets';
 import { ImagePreviewModal } from './ImagePreviewModal';
 
@@ -22,6 +22,7 @@ interface DownloadItem {
 export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
   const isAr = lang === 'ar';
   const [activeCategory, setActiveCategory] = useState<'all' | 'logos' | 'flag' | 'patterns'>('all');
+  const [copiedAiId, setCopiedAiId] = useState<string | null>(null);
   const [previewItem, setPreviewItem] = useState<{
     src: string;
     title: string;
@@ -29,6 +30,17 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
     desc: string;
     downloadUrl: string;
   } | null>(null);
+
+  const copyForAi = (item: DownloadItem) => {
+    const fullUrl = item.file.startsWith('http') 
+      ? item.file 
+      : `https://sytocode.github.io/syrian-visual-identity${item.file.startsWith('/') ? item.file : '/' + item.file}`;
+    
+    const snippet = `<!-- Syrian Visual Identity: ${item.nameEn} (${item.nameAr}) -->\n<!-- Format: ${item.format} | ${item.descEn} -->\n<img src="${fullUrl}" alt="${item.nameEn}" />`;
+    navigator.clipboard.writeText(snippet);
+    setCopiedAiId(item.id);
+    setTimeout(() => setCopiedAiId(null), 2000);
+  };
 
   const logoDownloads: DownloadItem[] = [
     {
@@ -382,6 +394,18 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
                   title={isAr ? 'معاينة' : 'Preview'}
                 >
                   <Eye className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => copyForAi(item)}
+                  className="p-2.5 rounded-xl border border-[#b9a779]/40 bg-[#b9a779]/10 hover:bg-[#b9a779]/20 text-[#054239] dark:text-[#b9a779] text-xs font-semibold transition flex items-center gap-1"
+                  title={isAr ? 'نسخ وسم الأصل للذكاء الاصطناعي' : 'Copy asset code for AI'}
+                >
+                  {copiedAiId === item.id ? (
+                    <Check className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <Bot className="w-4 h-4" />
+                  )}
                 </button>
 
                 <a

@@ -1,0 +1,186 @@
+# Syrian Visual Identity | Full LLM Specification & Developer Documentation
+# الهوية البصرية الرسمية للجمهورية العربية السورية
+
+This exhaustive document provides AI coding assistants (Claude, Cursor, Copilot, ChatGPT, Gemini, Windsurf) with the complete design specifications, color systems, token definitions, SVG geometries, and implementation blueprints for the Syrian Visual Identity.
+
+---
+
+## 1. Brand Identity Overview
+- Official Entity: Syrian Arab Republic (الجمهورية العربية السورية)
+- National Slogan: انتماءٌ راسخ يتجاوز الحدود (Steadfast Belonging Beyond Borders)
+- Brand Positioning: سوريا: جامعة الشمل (Syria: The Unifier)
+- Core Emblem Symbolism:
+  1. Eight-Pointed Geometric Star (النجمة الثمانية): Rooted in Syrian, Umayyad, and Islamic geometric heritage.
+  2. The Center Heart (القلب النابض في المركز): Signifying Syria as the beating human and cultural heart of the region.
+  3. Converging Lines & Colors (تلاقي المسارات والألوان): Symbolizing the harmony of mountains, coast, desert, and the Euphrates.
+  4. Contemporary Kufic Calligraphy (الحداثة التيبوغرافية): Blending ancient calligraphy with modern digital aesthetics.
+
+---
+
+## 2. Complete Color System & Design Tokens
+
+### Primary Palette: Forest Green (الأخضر الغابي)
+Represents the land, prosperity, and continuous rebirth.
+- `syria-forest-main`:
+  - HEX: `#054239`
+  - RGB: `rgb(5, 66, 57)`
+  - CMYK: `cmyk(92%, 0%, 14%, 74%)`
+  - OKLCH: `oklch(0.33 0.08 175)`
+- `syria-forest-light`:
+  - HEX: `#428177`
+  - RGB: `rgb(66, 129, 119)`
+  - CMYK: `cmyk(49%, 0%, 8%, 49%)`
+  - OKLCH: `oklch(0.55 0.08 175)`
+- `syria-forest-dark`:
+  - HEX: `#002623`
+  - RGB: `rgb(0, 38, 35)`
+  - CMYK: `cmyk(100%, 0%, 8%, 85%)`
+  - OKLCH: `oklch(0.20 0.06 175)`
+
+### Secondary Palette: Golden Wheat (القمح الذهبي)
+Symbolizes historical wealth, sunlit soil, and timeless dignity.
+- `syria-wheat-main`:
+  - HEX: `#b9a779`
+  - RGB: `rgb(185, 167, 121)`
+  - CMYK: `cmyk(0%, 10%, 35%, 27%)`
+  - OKLCH: `oklch(0.72 0.08 92)`
+- `syria-wheat-muted`:
+  - HEX: `#988561`
+  - RGB: `rgb(152, 133, 97)`
+  - CMYK: `cmyk(0%, 12%, 36%, 40%)`
+  - OKLCH: `oklch(0.61 0.07 90)`
+- `syria-wheat-cream`:
+  - HEX: `#edebe0`
+  - RGB: `rgb(237, 235, 224)`
+  - CMYK: `cmyk(0%, 1%, 5%, 7%)`
+  - OKLCH: `oklch(0.93 0.02 95)`
+
+### Accent Palette: Deep Umber (العنبري الدمشقي)
+Drawn from Damascus brocade and Levantine pigments.
+- `syria-umber-base`: `#6b1f2a` | `rgb(107, 31, 42)`
+- `syria-umber-deep`: `#4a151e` | `rgb(74, 21, 30)`
+- `syria-umber-dark`: `#260f14` | `rgb(38, 15, 20)`
+
+### Neutral Palette: Charcoal & Canvas (الفحمي والأرضيات)
+- `syria-charcoal-white`: `#ffffff`
+- `syria-charcoal-text`: `#3d3a3b`
+- `syria-charcoal-dark`: `#161616`
+- `syria-canvas-light`: `#fdfbf7`
+
+---
+
+## 3. CSS Variables & Tailwind Configuration Snippet
+
+### CSS Custom Properties
+```css
+:root {
+  --syria-forest: #054239;
+  --syria-forest-light: #428177;
+  --syria-forest-dark: #002623;
+  --syria-gold: #b9a779;
+  --syria-gold-muted: #988561;
+  --syria-cream: #edebe0;
+  --syria-umber: #6b1f2a;
+  --syria-charcoal: #161616;
+}
+```
+
+### Tailwind Config Preset (`tailwind.config.js`)
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        syria: {
+          forest: '#054239',
+          'forest-light': '#428177',
+          'forest-dark': '#002623',
+          gold: '#b9a779',
+          'gold-muted': '#988561',
+          cream: '#edebe0',
+          umber: '#6b1f2a',
+          charcoal: '#161616',
+        }
+      },
+      fontFamily: {
+        hayyakum: ['HayyakumAllah', 'sans-serif'],
+      }
+    }
+  }
+}
+```
+
+---
+
+## 4. Syrian Constitutional Flag Geometry
+
+The flag of the Syrian Arab Republic is mathematically constructed as follows:
+- Ratio: Exactly 3:2 (36 width × 24 height units).
+- Stripe 1 (Top): Green `#007A3D` (Height = 8 units).
+- Stripe 2 (Middle): White `#FFFFFF` (Height = 8 units).
+- Stripe 3 (Bottom): Black `#000000` (Height = 8 units).
+- Stars:
+  - Three Red Five-Pointed Stars (`#CE1126`).
+  - Vertically centered inside the middle white band (Y = 12 units).
+  - Horizontal centers:
+    - Star 1: X = 9 units (25% of flag width).
+    - Star 2: X = 18 units (50% of flag width).
+    - Star 3: X = 27 units (75% of flag width).
+  - Rotation: Upward-pointing (one vertex strictly at 0° / 12 o'clock).
+
+---
+
+## 5. Official Vector Assets (Direct URLs)
+
+All vector assets are publicly accessible from GitHub Pages:
+- Horizontal Logo (Forest Green):
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_horizontal_dark_green.svg`
+- Horizontal Logo (White for dark backgrounds):
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_horizontal_white.svg`
+- Vertical Logo (Forest Green):
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_vertical_logo_.svg`
+- Golden Seal Emblem Icon:
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_logo_icon_gold.svg`
+- Black Logotype Wordmark:
+  `https://sytocode.github.io/syrian-visual-identity/assets/logos/Logos/SVG/Syrian_logotype_black.svg`
+- Flag Vector Blueprint:
+  `https://sytocode.github.io/syrian-visual-identity/assets/materials/syrian-flag-proportions.svg`
+- Complete Master 125 Asset Package (ZIP):
+  `https://sytocode.github.io/syrian-visual-identity/downloads/Syrian_Identity_Official_Package.zip`
+
+---
+
+## 6. The 14 Syrian Governorates Landmarks
+1. Damascus (دمشق): Damascene Sword (السيف الدمشقي)
+2. Rif Dimashq (ريف دمشق): Ghouta of Rif Dimashq (غوطة ريف دمشق)
+3. Aleppo (حلب): Aleppo Citadel (قلعة حلب)
+4. Homs (حمص): Clock Tower of Homs (برج الساعة)
+5. Hama (حماة): Waterwheels of Hama (نواعير حماة)
+6. Latakia (اللاذقية): Triumphal Arch of Septimius Severus (قوس النصر)
+7. Tartus (طرطوس): Arwad Island Fortress (جزيرة أرواد)
+8. Idlib (إدلب): Ruweiha Church and Ancient Dead Cities (رويحة والمدن المنسية)
+9. Deir ez-Zor (دير الزور): Euphrates Suspension Bridge (الجسر المعلق)
+10. Raqqa (الرقة): Baghdad Gate (بوابة بغداد)
+11. Hasakah (الحسكة): Ain Diwar Roman Bridge (جسر عين ديوار)
+12. Daraa (درعا): Omari Mosque (المسجد العمري)
+13. As-Suwayda (السويداء): Qanawat Roman Sanctuary (آثار قنوات)
+14. Quneitra (القنيطرة): Bethsaida & Golan Heights (بيت صيدا والجولان)
+
+---
+
+## 7. WebMCP Protocol Specification
+Any browser-based AI agent visiting `https://sytocode.github.io/syrian-visual-identity/` can call tools via `navigator.modelContext` or `window.syrianIdentityMCP`:
+
+```javascript
+// Example: Query colors
+const palette = await window.syrianIdentityMCP.callTool('get_color_palette', {});
+
+// Example: Retrieve flag specs
+const flag = await window.syrianIdentityMCP.callTool('get_flag_specs', {});
+
+// Example: Get logo URL
+const logo = await window.syrianIdentityMCP.callTool('get_logo', {
+  variant: 'horizontal',
+  color: 'green'
+});
+```

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Syrian Visual Identity WebMCP",
+  "version": "1.0.0",
+  "description": "Official Web Model Context Protocol (WebMCP) tool registry and specification for the Syrian Visual Identity. Enables browser AI agents (Cursor, Claude Code, Copilot, Chrome DevTools AI) to query colors, logos, flag rules, and heritage symbols.",
+  "homepage": "https://sytocode.github.io/syrian-visual-identity/",
+  "repository": "https://github.com/sytocode/syrian-visual-identity",
+  "license": "CC-BY-4.0",
+  "tools": [
+    {
+      "name": "get_color_palette",
+      "description": "Returns the complete Syrian Visual Identity color system (HEX, RGB, CMYK, Pantone, CSS variables, and usage rules).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["all", "forest", "wheat", "umber", "flag", "neutral"],
+            "default": "all",
+            "description": "Filter by color category or return all"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_logo",
+      "description": "Returns Syrian national emblem and visual identity logo URLs, vector details, and inline SVG markup with safety margins.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": ["primary", "horizontal", "vertical", "monochrome-white", "monochrome-dark"],
+            "default": "primary",
+            "description": "Emblem layout or color variant"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["url", "svg", "both"],
+            "default": "both",
+            "description": "Return direct CDN URL, inline SVG code, or both"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_flag_specs",
+      "description": "Returns official constitutional Syrian Flag technical specifications: 2:3 ratio, exact tricolor dimensions, and 3 red stars geometry with vector SVG.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "include_svg": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include production-ready SVG flag markup"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_governorate_landmark",
+      "description": "Returns the architectural emblem, landmark name, history, and SVG icon for any of the 14 Syrian governorates.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "governorate": {
+            "type": "string",
+            "description": "Name in Arabic or English (e.g. 'دمشق', 'Damascus', 'حلب', 'Aleppo', 'حمص', 'Homs', 'اللاذقية', 'Latakia')"
+          }
+        },
+        "required": ["governorate"]
+      }
+    },
+    {
+      "name": "get_brand_rules",
+      "description": "Returns official compliance dos and don'ts for Syrian visual identity typography, emblem spacing, color contrast, and flag respect guidelines.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "enum": ["all", "flag", "emblem", "typography", "colors"],
+            "default": "all",
+            "description": "Category of design system rules"
+          }
+        }
+      }
+    }
+  ]
+}
