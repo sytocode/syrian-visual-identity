@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, ExternalLink, Info, ShieldCheck } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface FlagProportionsProps {
   lang: 'ar' | 'en';
@@ -145,7 +146,7 @@ export const FlagProportions: React.FC<FlagProportionsProps> = ({ lang }) => {
             </div>
             <div className="flex flex-wrap gap-2">
               <a
-                href="/assets/materials/syrian-flag-proportions.svg"
+                href={getAssetUrl('/assets/materials/syrian-flag-proportions.svg')}
                 download="العلم_السوري_النسب_الهندسية.svg"
                 className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#988561] text-xs font-semibold text-gray-800 dark:text-gray-200 transition"
               >
@@ -153,7 +154,7 @@ export const FlagProportions: React.FC<FlagProportionsProps> = ({ lang }) => {
                 <span>SVG المتجه</span>
               </a>
               <a
-                href="/assets/materials/syrian-flag-proportions.png"
+                href={getAssetUrl('/assets/materials/syrian-flag-proportions.png')}
                 download="العلم_السوري_النسب_الهندسية.png"
                 className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-[#988561] text-xs font-semibold text-gray-800 dark:text-gray-200 transition"
               >

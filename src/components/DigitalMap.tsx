@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { syriaMapProvinces, ProvincePath } from '../data/syriaMapPaths';
-import { governorates, Governorate } from '../data/governoratesData';
-import { MapPin, Info, Search, Sparkles, Navigation, Layers } from 'lucide-react';
+import { syriaMapProvinces } from '../data/syriaMapPaths';
+import { governorates } from '../data/governoratesData';
+import { governorateSvgs } from '../data/governorateSvgs';
+import { getAssetUrl } from '../utils/assets';
+import { Info, Layers } from 'lucide-react';
 
 interface DigitalMapProps {
   lang: 'ar' | 'en';
@@ -12,6 +14,7 @@ export const DigitalMap: React.FC<DigitalMapProps> = ({ lang }) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const activeGov = governorates.find((g) => g.id === selectedId) || governorates[0];
+  const activeSvg = governorateSvgs[activeGov.svgFile] || '';
 
   return (
     <div className="space-y-10">
@@ -129,14 +132,11 @@ export const DigitalMap: React.FC<DigitalMapProps> = ({ lang }) => {
                 </h3>
               </div>
 
-              {/* Landmark SVG Icon preview */}
-              <div className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-black/30 border border-gray-100 dark:border-gray-800 p-2 flex items-center justify-center shadow-inner">
-                <img
-                  src={`/assets/icons/governorates/${activeGov.svgFile}`}
-                  alt={activeGov.nameAr}
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              {/* Landmark SVG Icon preview (Inline) */}
+              <div
+                className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-black/30 border border-gray-100 dark:border-gray-800 p-2 flex items-center justify-center shadow-inner"
+                dangerouslySetInnerHTML={{ __html: activeSvg }}
+              />
             </div>
 
             {/* Landmark Box */}
@@ -162,7 +162,7 @@ export const DigitalMap: React.FC<DigitalMapProps> = ({ lang }) => {
             {/* Actions */}
             <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex gap-3">
               <a
-                href={`/assets/icons/governorates/${activeGov.svgFile}`}
+                href={getAssetUrl(`assets/icons/governorates/${activeGov.svgFile}`)}
                 download={`أيقونة_${activeGov.nameAr}.svg`}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#054239] hover:bg-[#428177] text-white text-xs font-bold transition shadow-sm"
               >

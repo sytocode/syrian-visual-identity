@@ -6,7 +6,6 @@ import { BrandStoryPage } from './pages/BrandStoryPage';
 import { BrandElementsPage } from './pages/BrandElementsPage';
 import { ToolsPage } from './pages/ToolsPage';
 import { TeamsPage } from './pages/TeamsPage';
-import { PressPage } from './pages/PressPage';
 import { DownloadsPage } from './pages/DownloadsPage';
 
 export const App: React.FC = () => {
@@ -42,7 +41,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'brand-story', 'brand-elements', 'tools', 'teams', 'press', 'downloads'].includes(hash)) {
+      if (['home', 'brand-story', 'brand-elements', 'tools', 'teams', 'downloads'].includes(hash)) {
         setActiveTab(hash);
       }
     };
@@ -75,7 +74,6 @@ export const App: React.FC = () => {
         {activeTab === 'brand-elements' && <BrandElementsPage lang={lang} />}
         {activeTab === 'tools' && <ToolsPage lang={lang} />}
         {activeTab === 'teams' && <TeamsPage lang={lang} />}
-        {activeTab === 'press' && <PressPage lang={lang} />}
         {activeTab === 'downloads' && <DownloadsPage lang={lang} />}
       </main>
 

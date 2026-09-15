@@ -1,6 +1,7 @@
 import React from 'react';
 import { ColorPaletteViewer } from '../components/ColorPaletteViewer';
 import { Sparkles, Layers, Image as ImageIcon, CheckCircle2 } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface BrandElementsPageProps {
   lang: 'ar' | 'en';
@@ -34,19 +35,19 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
 
   // Gallery of preserved brand application images
   const applicationImages = [
-    { src: '/assets/media/7c47c148e9b75602dafbd6f8d6f6492f.jpg', title: 'الهوية في الفضاءات العامة والمعارض' },
-    { src: '/assets/media/c7dc6e6ccdbf9705843d4d5bad4e50ec.jpg', title: 'المطبوعات الرسمية والدبلوماسية' },
-    { src: '/assets/media/7458da0dd305ec790e7761f5e66aeb9f.jpg', title: 'الأوشحة والأنسجة السورية التقليدية' },
-    { src: '/assets/media/b415d4a46ec0157055feea4837b4c66e.jpg', title: 'التطبيقات الرقمية وتصميم الواجهات' },
-    { src: '/assets/media/6515842db4fd9195e73be4bf81db90cc.jpg', title: 'اللافتات الحضرية وتجميل المدن' },
-    { src: '/assets/media/93b6badaf8588070fa15d7466fbad083.jpg', title: 'تغليف المنتجات السورية التراثية' }
+    { src: getAssetUrl('/assets/media/7c47c148e9b75602dafbd6f8d6f6492f.jpg'), title: 'الهوية في الفضاءات العامة والمعارض' },
+    { src: getAssetUrl('/assets/media/c7dc6e6ccdbf9705843d4d5bad4e50ec.jpg'), title: 'المطبوعات الرسمية والدبلوماسية' },
+    { src: getAssetUrl('/assets/media/7458da0dd305ec790e7761f5e66aeb9f.jpg'), title: 'الأوشحة والأنسجة السورية التقليدية' },
+    { src: getAssetUrl('/assets/media/b415d4a46ec0157055feea4837b4c66e.jpg'), title: 'التطبيقات الرقمية وتصميم الواجهات' },
+    { src: getAssetUrl('/assets/media/6515842db4fd9195e73be4bf81db90cc.jpg'), title: 'اللافتات الحضرية وتجميل المدن' },
+    { src: getAssetUrl('/assets/media/93b6badaf8588070fa15d7466fbad083.jpg'), title: 'تغليف المنتجات السورية التراثية' }
   ];
 
   const patternImages = [
-    { src: '/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg', title: 'نمط الزخرفة الهندسية الأولى' },
-    { src: '/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg', title: 'نمط الزخرفة الهندسية الثانية' },
-    { src: '/assets/media/07d0eca67be9d8ef47a424c23b33e4e7.jpg', title: 'نمط الزخرفة الهندسية الثالثة' },
-    { src: '/assets/media/46090a0515cd857e09c67ccc9425fbdc.jpg', title: 'نمط الزخرفة الهندسية الرابعة' },
+    { src: getAssetUrl('/assets/media/25741af0874cd5aaa825b5f1b68c2463.jpg'), title: 'نمط الزخرفة الهندسية الأولى' },
+    { src: getAssetUrl('/assets/media/42579150ef34db6fd8c2359eb9ba8363.jpg'), title: 'نمط الزخرفة الهندسية الثانية' },
+    { src: getAssetUrl('/assets/media/07d0eca67be9d8ef47a424c23b33e4e7.jpg'), title: 'نمط الزخرفة الهندسية الثالثة' },
+    { src: getAssetUrl('/assets/media/46090a0515cd857e09c67ccc9425fbdc.jpg'), title: 'نمط الزخرفة الهندسية الرابعة' },
   ];
 
   return (
@@ -82,7 +83,7 @@ export const BrandElementsPage: React.FC<BrandElementsPageProps> = ({ lang }) =>
           {/* Logo Visual Showcase */}
           <div className="lg:col-span-5 bg-gradient-to-br from-[#054239] to-[#002623] rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-lg relative min-h-[380px]">
             <img
-              src="/assets/materials/logo.ai.svg"
+              src={getAssetUrl('/assets/materials/logo.ai.svg')}
               alt="شعار الهوية البصرية السورية"
               className="w-48 sm:w-56 h-auto drop-shadow-xl"
             />

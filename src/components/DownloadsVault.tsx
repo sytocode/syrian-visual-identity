@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, FileArchive, FileText, Image as ImageIcon, Type, Sparkles, CheckCircle2 } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface DownloadsVaultProps {
   lang: 'ar' | 'en';
@@ -11,42 +12,42 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
       nameAr: 'الشعار الأفقي الرسمي (Vector SVG)',
       nameEn: 'Horizontal Logo (Vector SVG)',
       format: 'SVG',
-      file: '/assets/logos/Logos/SVG/Syrian_horizontal_dark_green.svg',
+      file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_horizontal_dark_green.svg'),
       tag: 'الأكثر استخداماً'
     },
     {
       nameAr: 'الشعار العمودي الرسمي (Vector SVG)',
       nameEn: 'Vertical Logo (Vector SVG)',
       format: 'SVG',
-      file: '/assets/logos/Logos/SVG/Syrian_vertical_logo_.svg',
+      file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_vertical_logo_.svg'),
       tag: 'رسمي'
     },
     {
       nameAr: 'أيقونة الشعار الذهبية (Logo Icon Gold)',
       nameEn: 'Logo Icon Gold (Vector SVG)',
       format: 'SVG',
-      file: '/assets/logos/Logos/SVG/Syrian_logo_icon_gold.svg',
+      file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_logo_icon_gold.svg'),
       tag: 'ذهبي'
     },
     {
       nameAr: 'الرمز اللفظي للهوية (Logotype Black)',
       nameEn: 'Logotype Black (Vector SVG)',
       format: 'SVG',
-      file: '/assets/logos/Logos/SVG/Syrian_logotype_black.svg',
+      file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_logotype_black.svg'),
       tag: 'نصي'
     },
     {
       nameAr: 'شعار الهوية باللون الأبيض (White SVG)',
       nameEn: 'White Logo for Dark Backgrounds',
       format: 'SVG',
-      file: '/assets/logos/Logos/SVG/Syrian_horizontal_white.svg',
+      file: getAssetUrl('/assets/logos/Logos/SVG/Syrian_horizontal_white.svg'),
       tag: 'للخلفيات الداكنة'
     },
     {
       nameAr: 'شعار الهوية المفرغ عالي الدقة (PNG)',
       nameEn: 'High-Res Transparent PNG',
       format: 'PNG',
-      file: '/assets/logos/Logos/PNG/Syrian_horizontal_dark_green.png',
+      file: getAssetUrl('/assets/logos/Logos/PNG/Syrian_horizontal_dark_green.png'),
       tag: 'بدقة عالية'
     }
   ];
@@ -112,7 +113,7 @@ export const DownloadsVault: React.FC<DownloadsVaultProps> = ({ lang }) => {
 
           <div className="pt-4">
             <a
-              href="/downloads/Syrian_Identity_Official_Package.zip"
+              href={getAssetUrl('/downloads/Syrian_Identity_Official_Package.zip')}
               download="Syrian_Identity_Official_Package.zip"
               className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-[#b9a779] hover:bg-[#edebe0] text-[#054239] font-bold text-sm transition shadow-lg hover:shadow-xl active:scale-95"
             >

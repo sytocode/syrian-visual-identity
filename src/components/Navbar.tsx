@@ -35,7 +35,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'brand-elements', labelAr: 'عناصر الهوية', labelEn: 'Brand Elements' },
     { id: 'tools', labelAr: 'الأدوات والرموز', labelEn: 'Tools & Assets' },
     { id: 'teams', labelAr: 'فريق العمل', labelEn: 'The Team' },
-    { id: 'press', labelAr: 'المركز الإعلامي', labelEn: 'Press & Media' },
     { id: 'downloads', labelAr: 'المكتبة الرقمية', labelEn: 'Downloads' },
   ];
 

@@ -100,8 +100,8 @@ export const Footer: React.FC<FooterProps> = ({ lang, setActiveTab }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => { setActiveTab('press'); scrollToTop(); }} className="hover:text-white transition">
-                  {lang === 'ar' ? 'البيانات الصحفية' : 'Press Releases'}
+                <button onClick={() => { setActiveTab('downloads'); scrollToTop(); }} className="hover:text-white transition">
+                  {lang === 'ar' ? 'المكتبة الرقمية والتحميل' : 'Digital Vault & Downloads'}
                 </button>
               </li>
             </ul>

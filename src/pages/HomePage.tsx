@@ -1,5 +1,4 @@
 import React from 'react';
-import { pressArticles } from '../data/pressData';
 import { ArrowLeft, ArrowRight, Sparkles, BookOpen, Layers, MapPin, Compass, ShieldCheck } from 'lucide-react';
 
 interface HomePageProps {
@@ -170,52 +169,6 @@ export const HomePage: React.FC<HomePageProps> = ({ lang, setActiveTab }) => {
                 : 'Flag proportion blueprints, live typography studio, 14 governorate landmarks, and digital map.'}
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Latest Press Highlights Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-4">
-          <div>
-            <span className="text-xs font-bold text-[#988561] uppercase tracking-wider block">
-              {isAr ? '/ كن على اطلاع' : '/ Stay Informed'}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1">
-              {isAr ? 'الإعلام والصحافة' : 'Media & Press Releases'}
-            </h2>
-          </div>
-          <button
-            onClick={() => setActiveTab('press')}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#054239] dark:text-[#b9a779] hover:underline"
-          >
-            <span>{isAr ? 'عرض جميع البيانات الصحفية' : 'View all releases'}</span>
-            <ArrowIcon className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {pressArticles.map((article) => (
-            <article
-              key={article.id}
-              onClick={() => setActiveTab('press')}
-              className="cursor-pointer group bg-white dark:bg-[#1c1c1c] border border-gray-200 dark:border-gray-800 rounded-3xl overflow-hidden shadow-xs hover:shadow-md transition space-y-4 flex flex-col justify-between p-6"
-            >
-              <div className="space-y-3">
-                <span className="text-xs font-mono text-gray-400 block">{article.date}</span>
-                <h3 className="font-bold text-base text-gray-900 dark:text-white group-hover:text-[#054239] dark:group-hover:text-[#b9a779] transition leading-snug">
-                  {article.titleAr}
-                </h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-3 leading-relaxed">
-                  {article.excerptAr}
-                </p>
-              </div>
-
-              <div className="pt-2 flex items-center gap-1 text-xs font-bold text-[#988561] group-hover:underline">
-                <span>{isAr ? 'اقرأ البيان كاملاً' : 'Read full release'}</span>
-                <ArrowIcon className="w-3.5 h-3.5" />
-              </div>
-            </article>
-          ))}
         </div>
       </section>
     </div>

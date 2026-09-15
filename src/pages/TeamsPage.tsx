@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { teamDepartments, TeamDepartment } from '../data/teamsData';
 import { Users, Search, Award } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface TeamsPageProps {
   lang: 'ar' | 'en';
@@ -106,7 +107,7 @@ export const TeamsPage: React.FC<TeamsPageProps> = ({ lang }) => {
                 >
                   <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-gray-100 dark:bg-black/30 flex items-center justify-center relative border border-gray-100 dark:border-gray-800">
                     <img
-                      src={member.photo}
+                      src={getAssetUrl(member.photo)}
                       alt={member.name}
                       onError={(e) => {
                         // Fallback avatar if photo failed

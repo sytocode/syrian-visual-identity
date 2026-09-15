@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { governorates, iconColorThemes, Governorate } from '../data/governoratesData';
-import { Download, Search, MapPin, ExternalLink, Sparkles, Check } from 'lucide-react';
+import { governorateSvgs } from '../data/governorateSvgs';
+import { Download, Search, Sparkles, ExternalLink } from 'lucide-react';
 
 interface GovernorateIconsProps {
   lang: 'ar' | 'en';
@@ -9,30 +10,6 @@ interface GovernorateIconsProps {
 export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
   const [selectedTheme, setSelectedTheme] = useState(iconColorThemes[0]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [svgContents, setSvgContents] = useState<Record<string, string>>({});
-  const [selectedGov, setSelectedGov] = useState<Governorate | null>(null);
-
-  // Load all 14 SVGs locally
-  useEffect(() => {
-    const loadSvgs = async () => {
-      const map: Record<string, string> = {};
-      await Promise.all(
-        governorates.map(async (g) => {
-          try {
-            const res = await fetch(`/assets/icons/governorates/${g.svgFile}`);
-            if (res.ok) {
-              const text = await res.text();
-              map[g.svgFile] = text;
-            }
-          } catch (e) {
-            console.warn('Failed to load SVG for', g.id);
-          }
-        })
-      );
-      setSvgContents(map);
-    };
-    loadSvgs();
-  }, []);
 
   // Filter governorates
   const filtered = governorates.filter((g) => {
@@ -48,7 +25,6 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
   // Re-color SVG according to theme
   const getThemedSvg = (rawSvg: string, theme: typeof iconColorThemes[0]) => {
     if (!rawSvg) return '';
-    // Replace standard stroke/fill in icon
     let updated = rawSvg.replace(/#04018c/gi, theme.primary);
     updated = updated.replace(/fill:\s*#(?:fff|ffffff)/gi, `fill: ${theme.bg}`);
     updated = updated.replace(/fill="#(?:fff|ffffff)"/gi, `fill="${theme.bg}"`);
@@ -56,7 +32,7 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
   };
 
   const downloadSvg = (g: Governorate) => {
-    const raw = svgContents[g.svgFile];
+    const raw = governorateSvgs[g.svgFile] || '';
     if (!raw) return;
     const content = getThemedSvg(raw, selectedTheme);
     const blob = new Blob([content], { type: 'image/svg+xml;charset=utf-8' });
@@ -141,7 +117,7 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
       {/* Grid of 14 Emblems */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 sm:gap-6">
         {filtered.map((g) => {
-          const rawSvg = svgContents[g.svgFile] || '';
+          const rawSvg = governorateSvgs[g.svgFile] || '';
           const themed = getThemedSvg(rawSvg, selectedTheme);
 
           return (
@@ -153,7 +129,7 @@ export const GovernorateIcons: React.FC<GovernorateIconsProps> = ({ lang }) => {
               <div
                 className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center p-2 rounded-xl transition-transform group-hover:scale-105"
                 dangerouslySetInnerHTML={{
-                  __html: themed || `<img src="/assets/icons/governorates/${g.svgFile}" alt="${g.nameAr}" class="w-full h-full object-contain" />`,
+                  __html: themed,
                 }}
               />
 
