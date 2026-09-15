@@ -11,7 +11,18 @@ import { AIDevHubPage } from './pages/AIDevHubPage';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
-  const [lang, setLang] = useState<'ar' | 'en'>('ar');
+  const [lang, setLang] = useState<'ar' | 'en'>(() => {
+    const storedLang = localStorage.getItem('sy_lang');
+    if (storedLang === 'ar' || storedLang === 'en') {
+      return storedLang;
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryLang = urlParams.get('lang');
+    if (queryLang === 'ar' || queryLang === 'en') {
+      return queryLang;
+    }
+    return 'ar';
+  });
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   // Sync dark mode class
@@ -32,10 +43,11 @@ export const App: React.FC = () => {
     }
   }, [darkMode]);
 
-  // Sync RTL / LTR direction
+  // Sync RTL / LTR direction and persist language
   useEffect(() => {
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
     document.documentElement.setAttribute('lang', lang);
+    localStorage.setItem('sy_lang', lang);
   }, [lang]);
 
   // Listen to hash changes for deep linking
